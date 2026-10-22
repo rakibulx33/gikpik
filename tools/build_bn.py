@@ -177,9 +177,9 @@ TEXT = {
     "Nothing in this group yet.": "এই গ্রুপে এখনো কিছু নেই।",
 
     # team
-    "Equal partners. One standard.": "সমান অংশীদার। একই মান।",
-    "Everyone builds, everyone talks to clients, and every release is checked by a colleague before it ships. The goal is the same on every project: software that makes your business run better.":
-        "সবাই নিজের হাতে কাজ করে, সবাই ক্লায়েন্টের সাথে কথা বলে, আর প্রতিটি রিলিজ প্রকাশের আগে একজন সহকর্মী যাচাই করে। প্রতিটি প্রজেক্টে লক্ষ্য একটাই: এমন সফটওয়্যার, যা আপনার ব্যবসাকে আরও ভালোভাবে চালায়।",
+    "The people behind your project.": "আপনার প্রজেক্টের পেছনের মানুষগুলো",
+    "You work directly with the people who design, build and support your software. Every release is checked by a colleague before it ships, and the goal is the same on every project: software that makes your business run better.":
+        "যাঁরা আপনার সফটওয়্যার ডিজাইন করেন, তৈরি করেন আর সাপোর্ট দেন, তাঁদের সাথেই আপনি সরাসরি কাজ করবেন। প্রতিটি রিলিজ প্রকাশের আগে একজন সহকর্মী যাচাই করেন, আর প্রতিটি প্রজেক্টে লক্ষ্য একটাই: এমন সফটওয়্যার, যা আপনার ব্যবসাকে আরও ভালোভাবে চালায়।",
     "How we work with you": "আপনার সাথে যেভাবে কাজ করি",
     "One point of contact": "যোগাযোগের জন্য একজন নির্দিষ্ট ব্যক্তি",
     "Every project has a named contact from the first call to launch day, and they are in the room when you review.":

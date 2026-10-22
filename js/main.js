@@ -418,13 +418,11 @@
 
   /* ---------- Team: render roster if supplied ---------- */
   const ACCENTS = ["0,235,138", "91,140,255", "214,128,200", "255,200,87"];
-  // each person keeps their own colour, then the order is shuffled on every visit
   const team = (Array.isArray(window.GIKPIK_TEAM) ? window.GIKPIK_TEAM : []).map((p, i) => {
     const d = BN && p.bn ? { ...p, ...p.bn } : { ...p };
     if (d.photo && BASE) d.photo = new URL(d.photo, BASE).href;
     return { ...d, ac: ACCENTS[i % ACCENTS.length] };
   });
-  for (let i = team.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [team[i], team[j]] = [team[j], team[i]]; }
   if (team.length) {
     const people = $("#people");
     const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
