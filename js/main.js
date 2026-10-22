@@ -11,6 +11,7 @@
   const animate = hasGsap && !reduced;
   if (!hasGsap) root.classList.add("fallback");
   if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+  root.classList.add("is-init");
   const loader = $("#loader");
   if (loader && !animate) loader.remove();
 
@@ -95,21 +96,11 @@
     progress.style.transform = `scaleX(${max > 0 ? clamp(sy / max, 0, 1) : 0})`;
   };
 
-  /* ---------- Process route fills as you read ---------- */
-  const route = $("#route");
-  const routeItems = $$("li", route);
-  const updateRoute = () => {
-    const vh = window.innerHeight;
-    const r = route.getBoundingClientRect();
-    route.style.setProperty("--p", clamp((vh * 0.6 - r.top) / r.height, 0, 1).toFixed(4));
-    routeItems.forEach((li) => li.classList.toggle("is-lit", li.getBoundingClientRect().top < vh * 0.6));
-  };
-
   let ticking = false;
   const onScroll = () => {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(() => { setHeader(); updateRail(); updateRoute(); ticking = false; });
+    requestAnimationFrame(() => { setHeader(); updateRail(); ticking = false; });
   };
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", onScroll);
@@ -172,11 +163,10 @@
     li.addEventListener("click", (e) => { if (!e.target.closest("a, button")) toggle(); });
   });
 
-  /* ---------- Selected work: expanding panels ---------- */
-  const xp = $("#xp");
-  if (xp) {
+  /* ---------- Expanding panels: services and selected work ---------- */
+  const desktop = window.matchMedia("(min-width: 861px)");
+  $$(".xp-wrap").forEach((xp) => {
     const panels = $$(".xp", xp);
-    const desktop = window.matchMedia("(min-width: 861px)");
     let autoOn = false, hovering = false, inView = false;
 
     const setWidth = () => {
@@ -237,6 +227,77 @@
     desktop.addEventListener("change", () => { sync(); paint(); setWidth(); });
     window.addEventListener("resize", setWidth);
     setWidth(); sync(); paint();
+  });
+
+  /* ---------- Compact expandable lists (team) ---------- */
+  $$(".acc").forEach((list, i) => {
+    list.classList.add("acc-ready");
+    const items = $$(":scope > li", list);
+    items.forEach((li, k) => {
+      const btn = $(".acc-btn", li), body = $(".acc-body", li);
+      if (!btn || !body) return;
+      body.id = `acc-${i + 1}-${k + 1}`;
+      btn.setAttribute("aria-controls", body.id);
+      btn.addEventListener("click", () => {
+        const on = !li.classList.contains("is-open");
+        items.forEach((o) => {
+          const open = o === li && on;
+          o.classList.toggle("is-open", open);
+          $(".acc-btn", o).setAttribute("aria-expanded", String(open));
+        });
+        refreshLater();
+      });
+    });
+  });
+
+  /* ---------- How we work: expanding timeline ---------- */
+  const route = $("#route");
+  if (route) {
+    const steps = $$(":scope > li", route);
+    let rAuto = false, rHover = false, rView = false;
+    route.classList.add("route-ready");
+    const measure = () => {
+      // all steps but the open one are collapsed, so a collapsed row is just its title
+      const closed = steps.find((li) => !li.classList.contains("is-open")) || steps[0];
+      const h = $("h3", closed).offsetHeight;
+      const bodies = steps.map((li) => $(".route-body > div", li).scrollHeight);
+      const i = Math.max(0, steps.findIndex((li) => li.classList.contains("is-open")));
+      const openBody = i < steps.length - 1 ? bodies[i] : 0;
+      route.style.setProperty("--fill", h * i + "px");
+      route.style.setProperty("--track", h * (steps.length - 1) + openBody + "px");
+      // reserve the tallest state so the page below never jumps while steps change
+      const minH = h * steps.length + Math.max(...bodies) + "px";
+      if (route.style.minHeight !== minH) { route.style.minHeight = minH; refreshLater(); }
+    };
+    const setStep = (li) => {
+      const idx = steps.indexOf(li);
+      steps.forEach((st, k) => {
+        st.classList.toggle("is-open", k === idx);
+        st.classList.toggle("is-lit", k <= idx);
+        $(".route-btn", st).setAttribute("aria-expanded", String(k === idx));
+      });
+      measure();
+    };
+    const paintR = () => {
+      route.classList.toggle("autoplay", rAuto);
+      route.classList.toggle("paused", rHover || !rView);
+    };
+    steps.forEach((li) => $(".route-btn", li).addEventListener("click", () => { rAuto = false; paintR(); setStep(li); }));
+    route.addEventListener("pointerenter", () => { rHover = true; paintR(); });
+    route.addEventListener("pointerleave", () => { rHover = false; paintR(); });
+    route.addEventListener("animationend", (e) => {
+      if (!e.target.classList.contains("route-timer") || !rAuto) return;
+      const i = steps.findIndex((st) => st.classList.contains("is-open"));
+      setStep(steps[(i + 1) % steps.length]);
+    });
+    if (!reduced && "IntersectionObserver" in window) {
+      rAuto = true;
+      new IntersectionObserver((en) => { rView = en[0].isIntersecting; paintR(); }, { threshold: 0.5 }).observe(route);
+    }
+    window.addEventListener("resize", measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+    setStep(steps.find((st) => st.classList.contains("is-open")) || steps[0]);
+    paintR();
   }
 
   /* ---------- Solutions explorer ---------- */
@@ -317,7 +378,17 @@
       return `<li class="person cut glow" style="--ac:${p.ac}"><div class="avatar${p.photo ? " photo" : ""}"${p.photo ? "" : ' aria-hidden="true"'}>${avatar}</div><div class="pbody"><h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}${p.blurb ? `<p class="blurb">${esc(p.blurb)}</p>` : ""}${tags ? `<ul class="tags">${tags}</ul>` : ""}${links ? `<p class="links">${links}</p>` : ""}</div></li>`;
     }).join("");
     people.hidden = false;
-    $(".principles").before(people);
+    const persons = $$(".person", people);
+    persons.forEach((card) => {
+      card.tabIndex = 0;
+      const toggle = () => {
+        const on = !card.classList.contains("is-open");
+        persons.forEach((c) => c.classList.toggle("is-open", c === card && on));
+        refreshLater();
+      };
+      card.addEventListener("click", (e) => { if (!e.target.closest("a")) toggle(); });
+      card.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+    });
   }
 
   /* ---------- Section eyebrows: 01 Services, 02 Solutions ... ---------- */
@@ -413,6 +484,8 @@
 
   /* Counters: show the real number without motion, count up with it */
   const counters = $$("[data-count]");
+
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("is-init")));
 
   if (!animate) {
     // everything is already visible; nothing else to do
@@ -522,13 +595,12 @@
       onEnter: (b) => gsap.to(b, { opacity: 1, y: 0, duration: 0.85, ease: "power3.out", stagger: 0.1, clearProps: "opacity,transform" })
     });
   };
-  reveal(".service-primary .service");
-  reveal(".service-secondary article", { y: 24 });
+  reveal(".xp-svc .xp", { y: 44 });
   reveal(".offers");
   reveal(".fit-grid > *");
-  reveal(".principles li", { y: 28 });
-  reveal(".disciplines article", { y: 28 });
-  reveal(".people .person", { y: 28 });
+  reveal(".people .person", { y: 36 });
+  reveal(".team-more .tm-col", { y: 28 });
+  reveal(".route > li", { y: 20 });
   reveal(".index-wrap");
   reveal(".process-intro > *:not(h2):not(.eyebrow)", { y: 24 });
   reveal(".gates header > *", { y: 24 });
@@ -604,19 +676,6 @@
     });
     heroEl.addEventListener("pointerleave", () => floats.forEach((f) => { f.x(0); f.y(0); }));
 
-    // tilt on service cards
-    $$(".service").forEach((card) => {
-      const rx = gsap.quickTo(card, "rotationX", { duration: 0.5, ease: "power3.out" });
-      const ry = gsap.quickTo(card, "rotationY", { duration: 0.5, ease: "power3.out" });
-      gsap.set(card, { transformPerspective: 900 });
-      card.addEventListener("pointermove", (e) => {
-        const r = card.getBoundingClientRect();
-        ry(((e.clientX - r.left) / r.width - 0.5) * 8);
-        rx(-((e.clientY - r.top) / r.height - 0.5) * 8);
-      });
-      card.addEventListener("pointerleave", () => { rx(0); ry(0); });
-    });
-
     // magnetic buttons
     $$(".btn-primary, .btn-ghost").forEach((b) => {
       const bx = gsap.quickTo(b, "x", { duration: 0.4, ease: "power3.out" });
@@ -634,5 +693,6 @@
   gsap.fromTo(".mega", { yPercent: 30, opacity: 0 }, { yPercent: 0, opacity: 1, ease: "none", scrollTrigger: { trigger: ".site-footer", start: "top bottom", end: "bottom bottom", scrub: true } });
 
   window.addEventListener("load", () => ScrollTrigger.refresh());
+  setTimeout(() => ScrollTrigger.refresh(), 900);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
 })();
