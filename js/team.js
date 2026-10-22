@@ -14,9 +14,9 @@ window.GIKPIK_TEAM = [
     bn: { name: "এস এম তোহা", role: "ওয়েব ও UI ডেভেলপমেন্ট", blurb: "মানুষ যেসব ওয়েবসাইট আর ইন্টারফেস ব্যবহার করে, সেগুলো ডিজাইন করে তৈরি করেন।", tags: ["ওয়েবসাইট", "UI"] }
   },
   {
-    name: "Johurul Islam", role: "Manager", blurb: "Keeps every project on scope, on time and on track.",
+    name: "Johurul Islam (Rafi)", role: "Manager", blurb: "Keeps every project on scope, on time and on track.",
     tags: ["Planning", "Delivery", "Clients"], photo: "assets/team/member-3.jpg",
-    bn: { name: "জহুরুল ইসলাম", role: "ম্যানেজার", blurb: "প্রতিটি প্রজেক্ট স্কোপ, সময় আর লক্ষ্যের মধ্যে রাখেন।", tags: ["পরিকল্পনা", "ডেলিভারি", "ক্লায়েন্ট"] }
+    bn: { name: "জহুরুল ইসলাম (রাফি)", role: "ম্যানেজার", blurb: "প্রতিটি প্রজেক্ট স্কোপ, সময় আর লক্ষ্যের মধ্যে রাখেন।", tags: ["পরিকল্পনা", "ডেলিভারি", "ক্লায়েন্ট"] }
   },
   {
     name: "Faimul", role: "App and software development", blurb: "Builds the mobile apps and software products.",
