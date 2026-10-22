@@ -7,12 +7,16 @@ Live: https://rakibulx33.github.io/gikpik/
 
 ## What is here
 
-A static site with no build step: plain HTML, CSS and a small amount of JavaScript.
+A static site with no build step: plain HTML, CSS and JavaScript. Motion uses GSAP, ScrollTrigger and Lenis, self-hosted in `assets/vendor/`.
 
 ```
 index.html          the page
 css/styles.css      all styles (tokens at the top of the file)
-js/main.js          filters, tabs, altitude rail, brief form
+js/main.js          smooth scroll, scroll animations, filters, tabs, brief form
+js/particles.js     hero particle logo (assembles, reacts to the pointer)
+js/team.js          team roster: names, roles, photos, tags
+assets/team/        team photos (4:5 portraits, face centred)
+assets/vendor/      GSAP, ScrollTrigger, Lenis
 assets/brand/       logo mark (SVG), favicon, app icons, social image
 assets/fonts/       Chakra Petch and Hanken Grotesk, self-hosted
 404.html            not-found page
@@ -29,5 +33,7 @@ python3 -m http.server 8000
 
 - The mark in `assets/brand/mark.svg` is a vector redraw of the supplied logo artwork. Swap in the original vector file if you have one.
 - The contact form opens the visitor's email app with the brief filled in, so it works on static hosting. To receive briefs without that step, connect a form service and replace the `submit` handler in `js/main.js`.
-- Project descriptions follow the public portfolio at https://rakibulx33.me. Private repositories are described without code.
+- To change the team, edit `js/team.js`; the Team section renders from it. Photos go in `assets/team/`.
+- Private repositories are described without code.
+- Visitors who prefer reduced motion get a static version: no intro, no smooth scroll, no particles.
 - Update the `og:image` and canonical URLs in `index.html` when the site moves to its own domain.

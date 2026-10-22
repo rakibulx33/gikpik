@@ -11,6 +11,8 @@
   const animate = hasGsap && !reduced;
   if (!hasGsap) root.classList.add("fallback");
   if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+  const loader = $("#loader");
+  if (loader && !animate) loader.remove();
 
   /* ---------- Smooth scroll (Lenis) wired to ScrollTrigger ---------- */
   let lenis = null;
@@ -216,11 +218,23 @@
       const initials = esc(p.name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("").toUpperCase());
       const avatar = p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" width="480" height="480" loading="lazy">` : initials;
       const links = Object.entries(p.links || {}).map(([k, u]) => `<a href="${esc(u)}" rel="noopener">${esc(k.charAt(0).toUpperCase() + k.slice(1))}</a>`).join("");
-      return `<li class="person cut glow"><div class="avatar${p.photo ? " photo" : ""}"${p.photo ? "" : ' aria-hidden="true"'}>${avatar}</div><h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}${p.blurb ? `<p class="blurb">${esc(p.blurb)}</p>` : ""}${links ? `<p class="links">${links}</p>` : ""}</li>`;
+      const tags = (p.tags || []).map((t) => `<li>${esc(t)}</li>`).join("");
+      return `<li class="person cut glow"><div class="avatar${p.photo ? " photo" : ""}"${p.photo ? "" : ' aria-hidden="true"'}>${avatar}</div><div class="pbody"><h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}${p.blurb ? `<p class="blurb">${esc(p.blurb)}</p>` : ""}${tags ? `<ul class="tags">${tags}</ul>` : ""}${links ? `<p class="links">${links}</p>` : ""}</div></li>`;
     }).join("");
     people.hidden = false;
     $("#disciplines").before(people);
   }
+
+  /* ---------- Section eyebrows: 01 Services, 02 Solutions ... ---------- */
+  $$("section[data-label]").forEach((sec, i) => {
+    const h2 = $("h2", sec);
+    if (!h2) return;
+    const eb = document.createElement("p");
+    eb.className = "eyebrow";
+    eb.setAttribute("aria-hidden", "true");
+    eb.innerHTML = `<b>${String(i + 1).padStart(2, "0")}</b>${sec.dataset.label}`;
+    h2.before(eb);
+  });
 
   /* ---------- Offers fill the brief ---------- */
   const form = $("#brief");
@@ -341,7 +355,7 @@
   });
 
   /* hero intro */
-  const intro = gsap.timeline({ defaults: { ease: "power4.out" }, delay: 0.15 });
+  const intro = gsap.timeline({ defaults: { ease: "power4.out" }, paused: true });
   gsap.set(".display .li", { y: 0, yPercent: 112 });
   intro
     .to(".display .li", { yPercent: 0, duration: 1.1, stagger: 0.14 })
@@ -349,7 +363,34 @@
     .fromTo(".lede", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.8, clearProps: "transform" }, 0.55)
     .fromTo(".actions", { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.8, clearProps: "transform" }, 0.7)
     .fromTo(".hero-note", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.8, clearProps: "transform" }, 0.85)
-    .fromTo(".hero-foot", { opacity: 0 }, { opacity: 1, duration: 0.9 }, 1.1);
+    .fromTo(".hero-foot", { opacity: 0 }, { opacity: 1, duration: 0.9 }, 1.1)
+    .fromTo(".float", { opacity: 0, yPercent: 40, scale: 0.86 }, { opacity: 1, yPercent: 0, scale: 1, duration: 1.2, stagger: 0.16, ease: "expo.out" }, 0.9)
+    .fromTo(".grid-floor", { opacity: 0 }, { opacity: 1, duration: 1.6, ease: "power2.out" }, 0.2);
+
+  const playIntro = () => { window.dispatchEvent(new Event("gk:intro")); intro.play(); };
+  if (loader) {
+    let seen = false;
+    try { seen = sessionStorage.getItem("gk-intro") === "1"; sessionStorage.setItem("gk-intro", "1"); } catch (e) { /* storage blocked */ }
+    if (seen) { loader.remove(); playIntro(); }
+    else {
+      if (lenis) lenis.stop();
+      const minWait = new Promise((r) => setTimeout(r, 1500));
+      const loaded = new Promise((r) => {
+        if (document.readyState === "complete") r();
+        else window.addEventListener("load", r, { once: true });
+        setTimeout(r, 2600);
+      });
+      Promise.all([minWait, loaded]).then(() => {
+        gsap.timeline({ onComplete: () => { loader.remove(); if (lenis) lenis.start(); } })
+          .to(loader.children, { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.05 })
+          .to(loader, { clipPath: "inset(0 0 100% 0)", duration: 0.9, ease: "power4.inOut" }, "-=0.05")
+          .add(playIntro, "-=0.5");
+      });
+    }
+  } else playIntro();
+
+  /* eyebrows slide in */
+  $$(".eyebrow").forEach((eb) => gsap.fromTo(eb, { opacity: 0, x: -28 }, { opacity: 1, x: 0, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: eb, start: "top 92%", once: true } }));
 
   /* hero parallax on scroll */
   gsap.to(".hero .aurora", { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
@@ -396,13 +437,38 @@
   reveal(".disciplines article", { y: 28 });
   reveal(".people .person", { y: 28 });
   reveal(".index-wrap");
-  reveal(".process-intro > *:not(h2)", { y: 24 });
+  reveal(".process-intro > *:not(h2):not(.eyebrow)", { y: 24 });
   reveal(".gates header > *", { y: 24 });
-  reveal(".contact-copy > *:not(h2)", { y: 24 });
+  reveal(".contact-copy > *:not(h2):not(.eyebrow)", { y: 24 });
   reveal(".brief");
 
   /* the route items keep their dimming via .is-lit, so restore after reveal */
   /* pinned horizontal work showcase (desktop only) */
+  /* project plates draw themselves in, line by line */
+  const prepPlate = (svg) => {
+    const shapes = $$("path, rect, circle, ellipse, line, polyline, polygon", svg).filter((el) => {
+      if (el.hasAttribute("stroke-dasharray") || typeof el.getTotalLength !== "function") return false;
+      const cs = getComputedStyle(el);
+      return cs.stroke !== "none" && parseFloat(cs.strokeWidth) > 0;
+    });
+    shapes.forEach((el) => {
+      const len = Math.ceil(el.getTotalLength()) + 2;
+      el.style.strokeDasharray = len;
+      el.style.strokeDashoffset = len;
+    });
+    const fills = $$(".p-solid, .p-dot", svg);
+    const tl = gsap.timeline({ paused: true });
+    if (shapes.length) tl.to(shapes, { strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut", stagger: 0.025 });
+    if (fills.length) { gsap.set(fills, { opacity: 0 }); tl.to(fills, { opacity: 1, duration: 0.6, stagger: 0.06 }, "-=0.7"); }
+    return tl;
+  };
+  const plateTl = new Map();
+  $$(".htrack .project").forEach((card) => {
+    const svg = $(".plate", card);
+    if (svg) plateTl.set(card, prepPlate(svg));
+  });
+  const drawCard = (card) => { const tl = plateTl.get(card); if (tl) tl.play(); };
+
   const mm = gsap.matchMedia();
   const workSec = $("#work");
   const hpin = $("#hpin");
@@ -419,6 +485,11 @@
     });
     // cards lift as they enter the viewport from the right
     $$(".project", track).forEach((card) => {
+      if (card.offsetLeft < window.innerWidth * 0.8) {
+        ScrollTrigger.create({ trigger: hpin, start: "top 70%", once: true, onEnter: () => drawCard(card) });
+      } else {
+        ScrollTrigger.create({ trigger: card, containerAnimation: tween, start: "left 82%", once: true, onEnter: () => drawCard(card) });
+      }
       gsap.fromTo(card, { opacity: 0.35, scale: 0.94 }, {
         opacity: 1, scale: 1, ease: "none",
         scrollTrigger: { trigger: card, containerAnimation: tween, start: "left 96%", end: "left 62%", scrub: true }
@@ -428,6 +499,7 @@
   });
   mm.add("(max-width: 1023px), (max-height: 699px)", () => {
     reveal(".htrack .project", { y: 40 });
+    $$(".htrack .project").forEach((card) => ScrollTrigger.create({ trigger: card, start: "top 78%", once: true, onEnter: () => drawCard(card) }));
   });
 
   /* pointer effects */
@@ -447,6 +519,20 @@
     const gy = gsap.quickTo(glow, "y", { duration: 0.6, ease: "power3.out" });
     window.addEventListener("pointermove", (e) => { glow.classList.add("on"); gx(e.clientX); gy(e.clientY); }, { passive: true });
     document.addEventListener("pointerleave", () => glow.classList.remove("on"));
+
+    // hero demo cards drift with the pointer, at different depths
+    const heroEl = $("#top");
+    const floats = $$(".float").map((el) => ({
+      d: Number(el.dataset.depth) || 1,
+      x: gsap.quickTo(el, "x", { duration: 1.1, ease: "power3.out" }),
+      y: gsap.quickTo(el, "y", { duration: 1.1, ease: "power3.out" })
+    }));
+    heroEl.addEventListener("pointermove", (e) => {
+      const r = heroEl.getBoundingClientRect();
+      const nx = (e.clientX - r.left) / r.width - 0.5, ny = (e.clientY - r.top) / r.height - 0.5;
+      floats.forEach((f) => { f.x(nx * 34 * f.d); f.y(ny * 26 * f.d); });
+    });
+    heroEl.addEventListener("pointerleave", () => floats.forEach((f) => { f.x(0); f.y(0); }));
 
     // tilt on service cards
     $$(".service").forEach((card) => {

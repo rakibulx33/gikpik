@@ -132,6 +132,10 @@
 
   build();
   stage.classList.add("has-particles");
+  window.addEventListener("gk:intro", () => {
+    t0 = performance.now();
+    for (const p of parts) { p.x = Math.random() * W; p.y = H * (0.7 + Math.random() * 0.5); p.vx = 0; p.vy = 0; }
+  });
   const io = new IntersectionObserver((en) => { en[0].isIntersecting && !document.hidden ? start() : stop(); }, { threshold: 0 });
   io.observe(stage);
   document.addEventListener("visibilitychange", () => { document.hidden ? stop() : start(); });
