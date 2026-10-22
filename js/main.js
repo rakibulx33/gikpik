@@ -147,6 +147,98 @@
   };
   filterBtns.forEach((b) => b.addEventListener("click", () => applyFilter(b.dataset.filter)));
 
+  let refreshTimer;
+  const refreshLater = () => {
+    if (!hasGsap) return;
+    clearTimeout(refreshTimer);
+    refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 700);
+  };
+
+  /* ---------- Also built: compact rows that open on click ---------- */
+  indexList.classList.add("ix-ready");
+  rows.forEach((li, i) => {
+    const btn = $(".ix-toggle", li);
+    const desc = $(".ix-desc", li);
+    if (!btn || !desc) return;
+    desc.id = `ix-desc-${i + 1}`;
+    btn.setAttribute("aria-controls", desc.id);
+    const toggle = () => {
+      const on = !li.classList.contains("is-open");
+      li.classList.toggle("is-open", on);
+      btn.setAttribute("aria-expanded", String(on));
+      refreshLater();
+    };
+    btn.addEventListener("click", (e) => { e.stopPropagation(); toggle(); });
+    li.addEventListener("click", (e) => { if (!e.target.closest("a, button")) toggle(); });
+  });
+
+  /* ---------- Selected work: expanding panels ---------- */
+  const xp = $("#xp");
+  if (xp) {
+    const panels = $$(".xp", xp);
+    const desktop = window.matchMedia("(min-width: 861px)");
+    let autoOn = false, hovering = false, inView = false;
+
+    const setWidth = () => {
+      // width of an open panel, so its text never reflows while the panels resize
+      const gap = parseFloat(getComputedStyle(xp).columnGap) || 12;
+      const w = (xp.clientWidth - gap * (panels.length - 1)) * 5.2 / (5.2 + panels.length - 1);
+      xp.style.setProperty("--xpw", Math.round(w) + "px");
+    };
+    const sync = () => {
+      panels.forEach((p) => {
+        const on = p.classList.contains("is-open");
+        const hit = $(".xp-hit", p);
+        hit.setAttribute("aria-expanded", String(on));
+        hit.tabIndex = on && desktop.matches ? -1 : 0;
+        $(".xp-body", p).inert = !on;
+      });
+    };
+    const setOpen = (panel) => {
+      if (panel && panel.classList.contains("is-open")) return;
+      panels.forEach((p) => p.classList.toggle("is-open", p === panel));
+      sync();
+      if (panel) xp.dispatchEvent(new CustomEvent("xp:open", { detail: panel }));
+      if (!desktop.matches) refreshLater();
+    };
+    const paint = () => {
+      xp.classList.toggle("autoplay", autoOn && desktop.matches);
+      xp.classList.toggle("paused", hovering || !inView);
+    };
+    const stopAuto = () => { autoOn = false; paint(); };
+
+    panels.forEach((p) => {
+      const hit = $(".xp-hit", p);
+      hit.addEventListener("click", () => {
+        stopAuto();
+        if (!desktop.matches && p.classList.contains("is-open")) setOpen(null);
+        else setOpen(p);
+      });
+      // small hover delay so sweeping the mouse across the row does not flicker every panel open
+      let intent;
+      p.addEventListener("pointerenter", (e) => {
+        if (!desktop.matches || e.pointerType !== "mouse") return;
+        intent = setTimeout(() => setOpen(p), 110);
+      });
+      p.addEventListener("pointerleave", () => clearTimeout(intent));
+    });
+    xp.addEventListener("pointerenter", () => { hovering = true; paint(); });
+    xp.addEventListener("pointerleave", () => { hovering = false; paint(); });
+    xp.addEventListener("animationend", (e) => {
+      if (!e.target.classList.contains("xp-timer") || !autoOn) return;
+      const i = panels.findIndex((p) => p.classList.contains("is-open"));
+      setOpen(panels[(i + 1) % panels.length]);
+    });
+
+    if (!reduced && "IntersectionObserver" in window) {
+      autoOn = true;
+      new IntersectionObserver((en) => { inView = en[0].isIntersecting; paint(); }, { threshold: 0.45 }).observe(xp);
+    }
+    desktop.addEventListener("change", () => { sync(); paint(); setWidth(); });
+    window.addEventListener("resize", setWidth);
+    setWidth(); sync(); paint();
+  }
+
   /* ---------- Solutions explorer ---------- */
   const SEGMENTS = {
     clinic: {
@@ -210,7 +302,10 @@
   showSegment(tabs[0], false);
 
   /* ---------- Team: render roster if supplied ---------- */
-  const team = Array.isArray(window.GIKPIK_TEAM) ? window.GIKPIK_TEAM : [];
+  const ACCENTS = ["0,235,138", "91,140,255", "214,128,200", "255,200,87"];
+  // each person keeps their own colour, then the order is shuffled on every visit
+  const team = (Array.isArray(window.GIKPIK_TEAM) ? window.GIKPIK_TEAM : []).map((p, i) => ({ ...p, ac: ACCENTS[i % ACCENTS.length] }));
+  for (let i = team.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [team[i], team[j]] = [team[j], team[i]]; }
   if (team.length) {
     const people = $("#people");
     const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -219,7 +314,7 @@
       const avatar = p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" width="480" height="480" loading="lazy">` : initials;
       const links = Object.entries(p.links || {}).map(([k, u]) => `<a href="${esc(u)}" rel="noopener">${esc(k.charAt(0).toUpperCase() + k.slice(1))}</a>`).join("");
       const tags = (p.tags || []).map((t) => `<li>${esc(t)}</li>`).join("");
-      return `<li class="person cut glow"><div class="avatar${p.photo ? " photo" : ""}"${p.photo ? "" : ' aria-hidden="true"'}>${avatar}</div><div class="pbody"><h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}${p.blurb ? `<p class="blurb">${esc(p.blurb)}</p>` : ""}${tags ? `<ul class="tags">${tags}</ul>` : ""}${links ? `<p class="links">${links}</p>` : ""}</div></li>`;
+      return `<li class="person cut glow" style="--ac:${p.ac}"><div class="avatar${p.photo ? " photo" : ""}"${p.photo ? "" : ' aria-hidden="true"'}>${avatar}</div><div class="pbody"><h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}${p.blurb ? `<p class="blurb">${esc(p.blurb)}</p>` : ""}${tags ? `<ul class="tags">${tags}</ul>` : ""}${links ? `<p class="links">${links}</p>` : ""}</div></li>`;
     }).join("");
     people.hidden = false;
     $(".principles").before(people);
@@ -440,9 +535,7 @@
   reveal(".contact-copy > *:not(h2):not(.eyebrow)", { y: 24 });
   reveal(".brief");
 
-  /* the route items keep their dimming via .is-lit, so restore after reveal */
-  /* pinned horizontal work showcase (desktop only) */
-  /* project plates draw themselves in, line by line */
+  /* work panels: plates draw in, and redraw each time a panel opens */
   const prepPlate = (svg) => {
     const shapes = $$("path, rect, circle, ellipse, line, polyline, polygon", svg).filter((el) => {
       if (el.hasAttribute("stroke-dasharray") || typeof el.getTotalLength !== "function") return false;
@@ -456,49 +549,28 @@
     });
     const fills = $$(".p-solid, .p-dot", svg);
     const tl = gsap.timeline({ paused: true });
-    if (shapes.length) tl.to(shapes, { strokeDashoffset: 0, duration: 1.5, ease: "power2.inOut", stagger: 0.025 });
+    if (shapes.length) tl.to(shapes, { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut", stagger: 0.025 });
     if (fills.length) { gsap.set(fills, { opacity: 0 }); tl.to(fills, { opacity: 1, duration: 0.6, stagger: 0.06 }, "-=0.7"); }
     return tl;
   };
-  const plateTl = new Map();
-  $$(".htrack .project").forEach((card) => {
-    const svg = $(".plate", card);
-    if (svg) plateTl.set(card, prepPlate(svg));
-  });
-  const drawCard = (card) => { const tl = plateTl.get(card); if (tl) tl.play(); };
-
-  const mm = gsap.matchMedia();
-  const workSec = $("#work");
-  const hpin = $("#hpin");
-  const track = $("#htrack");
-  const hprog = $("#hprog i");
-  mm.add("(min-width: 1024px) and (min-height: 700px)", () => {
-    workSec.classList.add("is-pinned");
-    const dist = () => Math.max(0, track.scrollWidth - window.innerWidth);
-    const tween = gsap.to(track, { x: () => -dist(), ease: "none" });
-    ScrollTrigger.create({
-      trigger: hpin, start: "top top", end: () => "+=" + dist(), pin: true, scrub: 0.6, animation: tween,
-      anticipatePin: 1, invalidateOnRefresh: true,
-      onUpdate: (st) => { hprog.style.transform = `scaleX(${st.progress})`; }
+  const xpWrap = $("#xp");
+  if (xpWrap) {
+    const xpPanels = $$(".xp", xpWrap);
+    const plateTl = new Map();
+    xpPanels.forEach((panel) => {
+      const svg = $(".plate", panel);
+      if (!svg) return;
+      const tl = prepPlate(svg);
+      plateTl.set(panel, tl);
+      if (!panel.classList.contains("is-open")) tl.progress(1); // closed panels keep their art, dimmed
     });
-    // cards lift as they enter the viewport from the right
-    $$(".project", track).forEach((card) => {
-      if (card.offsetLeft < window.innerWidth * 0.8) {
-        ScrollTrigger.create({ trigger: hpin, start: "top 70%", once: true, onEnter: () => drawCard(card) });
-      } else {
-        ScrollTrigger.create({ trigger: card, containerAnimation: tween, start: "left 82%", once: true, onEnter: () => drawCard(card) });
-      }
-      gsap.fromTo(card, { opacity: 0.35, scale: 0.94 }, {
-        opacity: 1, scale: 1, ease: "none",
-        scrollTrigger: { trigger: card, containerAnimation: tween, start: "left 96%", end: "left 62%", scrub: true }
-      });
+    const redraw = (panel) => { const tl = panel && plateTl.get(panel); if (tl) tl.restart(); };
+    xpWrap.addEventListener("xp:open", (e) => redraw(e.detail));
+    gsap.fromTo(xpPanels, { opacity: 0, y: 50 }, {
+      opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.08, clearProps: "opacity,transform",
+      scrollTrigger: { trigger: xpWrap, start: "top 85%", once: true, onEnter: () => redraw($(".xp.is-open", xpWrap)) }
     });
-    return () => { workSec.classList.remove("is-pinned"); hprog.style.transform = ""; };
-  });
-  mm.add("(max-width: 1023px), (max-height: 699px)", () => {
-    reveal(".htrack .project", { y: 40 });
-    $$(".htrack .project").forEach((card) => ScrollTrigger.create({ trigger: card, start: "top 78%", once: true, onEnter: () => drawCard(card) }));
-  });
+  }
 
   /* pointer effects */
   if (fine) {

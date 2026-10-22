@@ -40,7 +40,7 @@
     <div class="container header-row">
       <a class="brand" href="#top" aria-label="Gikpik, back to top">
         <img src="assets/brand/mark.svg" alt="" width="30" height="30">
-        <span class="wordmark">GiKPiK</span>
+        <span class="wordmark">GiKPiK<sup class="tld">.tech</sup></span>
       </a>
       <nav class="main-nav" id="main-nav" aria-label="Primary">
         <a href="#services">Services</a>
@@ -233,172 +233,223 @@
 
   <!-- ============ WORK ============ -->
   <section class="work" id="work" data-label="Work">
-    <div class="hpin" id="hpin">
-      <div class="container hpin-head">
+    <div class="container">
+      <header class="work-head">
         <div>
           <h2 class="split">Selected work</h2>
           <p>Seventeen projects, from client systems to hackathon builds. Private repositories are described without code, and we are happy to walk through them on a call.</p>
         </div>
-        <div class="hprog" id="hprog" aria-hidden="true"><i></i></div>
-      </div>
+        <p class="xp-hint" aria-hidden="true">Hover or tap a project to open it</p>
+      </header>
 
-      <div class="htrack" id="htrack">
-
-        <!-- BuildIoT BD -->
-        <article class="project cut glow" data-cat="web">
+      <div class="xp-wrap" id="xp">
+        <article class="xp is-open" style="--ac:0,235,138">
+          <button class="xp-hit" type="button" id="xp-btn-1" aria-expanded="true" aria-controls="xp-body-1">
+            <span class="xp-num">01</span>
+            <span class="xp-title">BuildIoT BD</span>
+            <span class="xp-plus" aria-hidden="true"></span>
+          </button>
+          <div class="xp-panel">
+            <div class="xp-art" aria-hidden="true">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
-            <g class="p-dim">
-              <rect x="24" y="28" width="84" height="64" rx="3"/><rect x="118" y="28" width="84" height="64" rx="3"/><rect x="212" y="28" width="84" height="64" rx="3"/>
-              <rect x="24" y="104" width="84" height="64" rx="3"/><rect x="118" y="104" width="84" height="64" rx="3"/><rect x="212" y="104" width="84" height="64" rx="3"/>
-            </g>
-            <g class="p-line">
-              <rect x="50" y="44" width="32" height="32"/>
-              <path d="M44 52h6M44 60h6M44 68h6M82 52h6M82 60h6M82 68h6M58 38v6M66 38v6M74 38v6M58 76v6M66 76v6M74 76v6"/>
-              <path d="M130 72h26v-16h34"/><circle cx="190" cy="56" r="3"/>
-              <path d="M226 78v-18M238 78v-30M250 78v-24M262 78v-12M274 78v-22"/>
-              <path d="M36 148h40M36 138h26"/><rect x="36" y="154" width="26" height="8" rx="4" class="p-solid"/>
-              <path d="M130 124h46M130 134h30"/><circle cx="278" cy="136" r="14"/><path d="M270 132h4l3 10h10l3-8h-16"/>
-            </g>
+          <g class="p-dim">
+          <rect x="24" y="28" width="84" height="64" rx="3"/><rect x="118" y="28" width="84" height="64" rx="3"/><rect x="212" y="28" width="84" height="64" rx="3"/>
+          <rect x="24" y="104" width="84" height="64" rx="3"/><rect x="118" y="104" width="84" height="64" rx="3"/><rect x="212" y="104" width="84" height="64" rx="3"/>
+          </g>
+          <g class="p-line">
+          <rect x="50" y="44" width="32" height="32"/>
+          <path d="M44 52h6M44 60h6M44 68h6M82 52h6M82 60h6M82 68h6M58 38v6M66 38v6M74 38v6M58 76v6M66 76v6M74 76v6"/>
+          <path d="M130 72h26v-16h34"/><circle cx="190" cy="56" r="3"/>
+          <path d="M226 78v-18M238 78v-30M250 78v-24M262 78v-12M274 78v-22"/>
+          <path d="M36 148h40M36 138h26"/><rect x="36" y="154" width="26" height="8" rx="4" class="p-solid"/>
+          <path d="M130 124h46M130 134h30"/><circle cx="278" cy="136" r="14"/><path d="M270 132h4l3 10h10l3-8h-16"/>
+          </g>
           </svg>
-          <div class="project-body">
-            <p class="kind">E-commerce platform</p>
-            <h3>BuildIoT BD</h3>
-            <p>A full online store for electronics and IoT parts in Bangladesh, with customer accounts, local payments and delivery, and a staff admin panel.</p>
-            <ul class="chips"><li>Laravel</li><li>Tailwind CSS</li></ul>
-            <p class="status"><span class="lock">Private repository</span></p>
+            </div>
+            <div class="xp-body" id="xp-body-1" role="region" aria-labelledby="xp-btn-1">
+              <p class="xp-count" aria-hidden="true">01 / 06</p>
+              <p class="kind">E-commerce platform</p>
+              <h3>BuildIoT BD</h3>
+              <p class="xp-desc">A full online store for electronics and IoT parts in Bangladesh, with customer accounts, local payments and delivery, and a staff admin panel.</p>
+              <ul class="chips"><li>Laravel</li><li>Tailwind CSS</li></ul>
+              <p class="status"><span class="lock">Private repository</span></p>
+            </div>
           </div>
+          <span class="xp-timer" aria-hidden="true"></span>
         </article>
-
-        <!-- TradingSpark -->
-        <article class="project cut glow" data-cat="ai">
+        <article class="xp" style="--ac:91,140,255">
+          <button class="xp-hit" type="button" id="xp-btn-2" aria-expanded="false" aria-controls="xp-body-2">
+            <span class="xp-num">02</span>
+            <span class="xp-title">TradingSpark</span>
+            <span class="xp-plus" aria-hidden="true"></span>
+          </button>
+          <div class="xp-panel">
+            <div class="xp-art" aria-hidden="true">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
-            <path class="p-grid" d="M24 28v148M24 176h272M24 102h272"/>
-            <g class="p-dim p-thin">
-              <path d="M24,176 L54,171 L84,176 L115,182 L145,182 L175,174 L205,180 L236,182 L266,182 L296,182"/>
-              <path d="M24,178 L54,182 L84,176 L115,170 L145,169 L175,156 L205,159 L236,165 L266,162 L296,171"/>
-              <path d="M24,165 L54,155 L84,143 L115,157 L145,151 L175,144 L205,155 L236,163 L266,153 L296,148"/>
-              <path d="M24,156 L54,154 L84,147 L115,142 L145,131 L175,118 L205,103 L236,111 L266,116 L296,116"/>
-              <path d="M24,160 L54,152 L84,136 L115,127 L145,115 L175,103 L205,105 L236,100 L266,96 L296,89"/>
-              <path d="M24,163 L54,154 L84,156 L115,155 L145,166 L175,157 L205,170 L236,159 L266,163 L296,164"/>
-              <path d="M24,179 L54,174 L84,177 L115,182 L145,172 L175,164 L205,171 L236,181 L266,182 L296,182"/>
-              <path d="M24,175 L54,182 L84,179 L115,164 L145,159 L175,165 L205,158 L236,145 L266,134 L296,138"/>
-              <path d="M24,166 L54,172 L84,182 L115,182 L145,178 L175,182 L205,182 L236,182 L266,182 L296,182"/>
-              <path d="M24,173 L54,182 L84,178 L115,169 L145,166 L175,171 L205,177 L236,171 L266,166 L296,182"/>
-              <path d="M24,179 L54,182 L84,170 L115,155 L145,147 L175,151 L205,153 L236,159 L266,168 L296,171"/>
-              <path d="M24,143 L54,149 L84,148 L115,138 L145,124 L175,115 L205,106 L236,101 L266,95 L296,83"/>
-              <path d="M24,161 L54,148 L84,143 L115,129 L145,135 L175,134 L205,130 L236,131 L266,121 L296,105"/>
-              <path d="M24,169 L54,161 L84,154 L115,162 L145,147 L175,144 L205,139 L236,131 L266,136 L296,127"/>
-            </g>
-            <path class="p-line p-hero" d="M24,170 L54,157 L84,155 L115,134 L145,117 L175,111 L205,91 L236,78 L266,52 L296,36"/>
-            <circle class="p-dot" cx="296" cy="36" r="4.5"/>
+          <path class="p-grid" d="M24 28v148M24 176h272M24 102h272"/>
+          <g class="p-dim p-thin">
+          <path d="M24,176 L54,171 L84,176 L115,182 L145,182 L175,174 L205,180 L236,182 L266,182 L296,182"/>
+          <path d="M24,178 L54,182 L84,176 L115,170 L145,169 L175,156 L205,159 L236,165 L266,162 L296,171"/>
+          <path d="M24,165 L54,155 L84,143 L115,157 L145,151 L175,144 L205,155 L236,163 L266,153 L296,148"/>
+          <path d="M24,156 L54,154 L84,147 L115,142 L145,131 L175,118 L205,103 L236,111 L266,116 L296,116"/>
+          <path d="M24,160 L54,152 L84,136 L115,127 L145,115 L175,103 L205,105 L236,100 L266,96 L296,89"/>
+          <path d="M24,163 L54,154 L84,156 L115,155 L145,166 L175,157 L205,170 L236,159 L266,163 L296,164"/>
+          <path d="M24,179 L54,174 L84,177 L115,182 L145,172 L175,164 L205,171 L236,181 L266,182 L296,182"/>
+          <path d="M24,175 L54,182 L84,179 L115,164 L145,159 L175,165 L205,158 L236,145 L266,134 L296,138"/>
+          <path d="M24,166 L54,172 L84,182 L115,182 L145,178 L175,182 L205,182 L236,182 L266,182 L296,182"/>
+          <path d="M24,173 L54,182 L84,178 L115,169 L145,166 L175,171 L205,177 L236,171 L266,166 L296,182"/>
+          <path d="M24,179 L54,182 L84,170 L115,155 L145,147 L175,151 L205,153 L236,159 L266,168 L296,171"/>
+          <path d="M24,143 L54,149 L84,148 L115,138 L145,124 L175,115 L205,106 L236,101 L266,95 L296,83"/>
+          <path d="M24,161 L54,148 L84,143 L115,129 L145,135 L175,134 L205,130 L236,131 L266,121 L296,105"/>
+          <path d="M24,169 L54,161 L84,154 L115,162 L145,147 L175,144 L205,139 L236,131 L266,136 L296,127"/>
+          </g>
+          <path class="p-line p-hero" d="M24,170 L54,157 L84,155 L115,134 L145,117 L175,111 L205,91 L236,78 L266,52 L296,36"/>
+          <circle class="p-dot" cx="296" cy="36" r="4.5"/>
           </svg>
-          <div class="project-body">
-            <p class="kind">Algorithmic trading system</p>
-            <h3>TradingSpark</h3>
-            <p>An algorithmic trading system for automated strategy research and validation. It runs demo-first, with real money only behind an explicit gate.</p>
-            <ul class="chips"><li>Python</li><li>NautilusTrader</li><li>React</li><li>TypeScript</li></ul>
-            <p class="status"><a href="https://github.com/rakibulx33/tradingspark" rel="noopener">Source on GitHub</a></p>
+            </div>
+            <div class="xp-body" id="xp-body-2" role="region" aria-labelledby="xp-btn-2">
+              <p class="xp-count" aria-hidden="true">02 / 06</p>
+              <p class="kind">Algorithmic trading system</p>
+              <h3>TradingSpark</h3>
+              <p class="xp-desc">An algorithmic trading system for automated strategy research and validation. It runs demo-first, with real money only behind an explicit gate.</p>
+              <ul class="chips"><li>Python</li><li>NautilusTrader</li><li>React</li><li>TypeScript</li></ul>
+              <p class="status"><a href="https://github.com/rakibulx33/tradingspark" rel="noopener">Source on GitHub</a></p>
+            </div>
           </div>
+          <span class="xp-timer" aria-hidden="true"></span>
         </article>
-
-        <!-- ShopTalk -->
-        <article class="project cut glow" data-cat="web ai">
+        <article class="xp" style="--ac:214,128,200">
+          <button class="xp-hit" type="button" id="xp-btn-3" aria-expanded="false" aria-controls="xp-body-3">
+            <span class="xp-num">03</span>
+            <span class="xp-title">ShopTalk</span>
+            <span class="xp-plus" aria-hidden="true"></span>
+          </button>
+          <div class="xp-panel">
+            <div class="xp-art" aria-hidden="true">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
-            <g class="p-line">
-              <path d="M40 74l12-30h120l12 30"/><path d="M40 74q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0"/>
-              <path d="M48 86v82h128v-82"/><rect x="64" y="104" width="32" height="64"/><rect x="112" y="104" width="48" height="30"/>
-            </g>
-            <g class="p-dim"><path d="M112 144h48M112 154h30"/></g>
-            <g class="p-line">
-              <path d="M206 56h82a6 6 0 0 1 6 6v46a6 6 0 0 1-6 6h-52l-16 14v-14h-14a6 6 0 0 1-6-6V62a6 6 0 0 1 6-6z"/>
-              <path class="p-bars" d="M226 80v8M236 74v20M246 70v28M256 76v16M266 72v24M276 80v8"/>
-            </g>
-            <g class="p-dim"><path d="M214 148h74M214 160h50"/></g>
+          <g class="p-line">
+          <path d="M40 74l12-30h120l12 30"/><path d="M40 74q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0"/>
+          <path d="M48 86v82h128v-82"/><rect x="64" y="104" width="32" height="64"/><rect x="112" y="104" width="48" height="30"/>
+          </g>
+          <g class="p-dim"><path d="M112 144h48M112 154h30"/></g>
+          <g class="p-line">
+          <path d="M206 56h82a6 6 0 0 1 6 6v46a6 6 0 0 1-6 6h-52l-16 14v-14h-14a6 6 0 0 1-6-6V62a6 6 0 0 1 6-6z"/>
+          <path class="p-bars" d="M226 80v8M236 74v20M246 70v28M256 76v16M266 72v24M276 80v8"/>
+          </g>
+          <g class="p-dim"><path d="M214 148h74M214 160h50"/></g>
           </svg>
-          <div class="project-body">
-            <p class="kind">Multi-tenant SaaS</p>
-            <h3>ShopTalk</h3>
-            <p>A multi-tenant storefront platform where each shop gets an AI assistant that helps customers find products by voice and chat.</p>
-            <ul class="chips"><li>Next.js</li><li>Supabase</li><li>AI</li></ul>
-            <p class="status"><span class="lock">Private repository</span></p>
+            </div>
+            <div class="xp-body" id="xp-body-3" role="region" aria-labelledby="xp-btn-3">
+              <p class="xp-count" aria-hidden="true">03 / 06</p>
+              <p class="kind">Multi-tenant SaaS</p>
+              <h3>ShopTalk</h3>
+              <p class="xp-desc">A multi-tenant storefront platform where each shop gets an AI assistant that helps customers find products by voice and chat.</p>
+              <ul class="chips"><li>Next.js</li><li>Supabase</li><li>AI</li></ul>
+              <p class="status"><span class="lock">Private repository</span></p>
+            </div>
           </div>
+          <span class="xp-timer" aria-hidden="true"></span>
         </article>
-
-        <!-- Replixon -->
-        <article class="project cut glow" data-cat="ai web">
+        <article class="xp" style="--ac:255,200,87">
+          <button class="xp-hit" type="button" id="xp-btn-4" aria-expanded="false" aria-controls="xp-body-4">
+            <span class="xp-num">04</span>
+            <span class="xp-title">Replixon</span>
+            <span class="xp-plus" aria-hidden="true"></span>
+          </button>
+          <div class="xp-panel">
+            <div class="xp-art" aria-hidden="true">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
-            <g class="p-line">
-              <circle cx="44" cy="44" r="12"/><circle cx="44" cy="84" r="12"/><circle cx="44" cy="124" r="12"/><circle cx="44" cy="164" r="12"/>
-            </g>
-            <g class="p-dim p-thin">
-              <path d="M56 44C120 44 140 92 196 92"/><path d="M56 84C110 84 150 96 196 96"/>
-              <path d="M56 124C110 124 150 108 196 108"/><path d="M56 164C120 164 140 112 196 112"/>
-            </g>
-            <g class="p-line">
-              <rect x="196" y="36" width="96" height="128" rx="4"/>
-              <path d="M208 56h72M208 76h54M208 96h72M208 116h40M208 136h66"/>
-            </g>
-            <rect class="p-solid" x="206" y="88" width="76" height="16" rx="3"/>
+          <g class="p-line">
+          <circle cx="44" cy="44" r="12"/><circle cx="44" cy="84" r="12"/><circle cx="44" cy="124" r="12"/><circle cx="44" cy="164" r="12"/>
+          </g>
+          <g class="p-dim p-thin">
+          <path d="M56 44C120 44 140 92 196 92"/><path d="M56 84C110 84 150 96 196 96"/>
+          <path d="M56 124C110 124 150 108 196 108"/><path d="M56 164C120 164 140 112 196 112"/>
+          </g>
+          <g class="p-line">
+          <rect x="196" y="36" width="96" height="128" rx="4"/>
+          <path d="M208 56h72M208 76h54M208 96h72M208 116h40M208 136h66"/>
+          </g>
+          <rect class="p-solid" x="206" y="88" width="76" height="16" rx="3"/>
           </svg>
-          <div class="project-body">
-            <p class="kind">AI social inbox</p>
-            <h3>Replixon</h3>
-            <p>An AI-assisted inbox that brings a business's social messaging channels into one place and helps answer customers faster.</p>
-            <ul class="chips"><li>Next.js</li><li>Supabase</li><li>AI</li></ul>
-            <p class="status"><span class="lock">Private repository</span></p>
+            </div>
+            <div class="xp-body" id="xp-body-4" role="region" aria-labelledby="xp-btn-4">
+              <p class="xp-count" aria-hidden="true">04 / 06</p>
+              <p class="kind">AI social inbox</p>
+              <h3>Replixon</h3>
+              <p class="xp-desc">An AI-assisted inbox that brings a business's social messaging channels into one place and helps answer customers faster.</p>
+              <ul class="chips"><li>Next.js</li><li>Supabase</li><li>AI</li></ul>
+              <p class="status"><span class="lock">Private repository</span></p>
+            </div>
           </div>
+          <span class="xp-timer" aria-hidden="true"></span>
         </article>
-
-        <!-- InstaMiner -->
-        <article class="project cut glow" data-cat="mobile web">
+        <article class="xp" style="--ac:0,230,182">
+          <button class="xp-hit" type="button" id="xp-btn-5" aria-expanded="false" aria-controls="xp-body-5">
+            <span class="xp-num">05</span>
+            <span class="xp-title">InstaMiner</span>
+            <span class="xp-plus" aria-hidden="true"></span>
+          </button>
+          <div class="xp-panel">
+            <div class="xp-art" aria-hidden="true">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
-            <g class="p-line">
-              <rect x="58" y="18" width="74" height="164" rx="12"/><path d="M84 28h22"/>
-              <path d="M72 140v-26M86 140v-44M100 140v-34M114 140v-52"/>
-              <rect x="70" y="150" width="50" height="14" rx="7"/>
-            </g>
-            <g class="p-dim p-thin"><path d="M132 100h60" stroke-dasharray="3 4"/></g>
-            <g class="p-line">
-              <rect x="196" y="56" width="92" height="26" rx="3"/><rect x="196" y="90" width="92" height="26" rx="3"/><rect x="196" y="124" width="92" height="26" rx="3"/>
-              <circle cx="209" cy="69" r="3"/><circle cx="209" cy="103" r="3"/><circle cx="209" cy="137" r="3"/>
-              <path d="M222 69h52M222 103h40M222 137h60"/>
-            </g>
+          <g class="p-line">
+          <rect x="58" y="18" width="74" height="164" rx="12"/><path d="M84 28h22"/>
+          <path d="M72 140v-26M86 140v-44M100 140v-34M114 140v-52"/>
+          <rect x="70" y="150" width="50" height="14" rx="7"/>
+          </g>
+          <g class="p-dim p-thin"><path d="M132 100h60" stroke-dasharray="3 4"/></g>
+          <g class="p-line">
+          <rect x="196" y="56" width="92" height="26" rx="3"/><rect x="196" y="90" width="92" height="26" rx="3"/><rect x="196" y="124" width="92" height="26" rx="3"/>
+          <circle cx="209" cy="69" r="3"/><circle cx="209" cy="103" r="3"/><circle cx="209" cy="137" r="3"/>
+          <path d="M222 69h52M222 103h40M222 137h60"/>
+          </g>
           </svg>
-          <div class="project-body">
-            <p class="kind">Mobile app and backend platform</p>
-            <h3>InstaMiner</h3>
-            <p>A social engagement platform with a native Android app, a backend API and an admin panel.</p>
-            <ul class="chips"><li>Kotlin</li><li>Python</li><li>Next.js</li></ul>
-            <p class="status"><span class="lock">Private repository</span></p>
+            </div>
+            <div class="xp-body" id="xp-body-5" role="region" aria-labelledby="xp-btn-5">
+              <p class="xp-count" aria-hidden="true">05 / 06</p>
+              <p class="kind">Mobile app and backend platform</p>
+              <h3>InstaMiner</h3>
+              <p class="xp-desc">A social engagement platform with a native Android app, a backend API and an admin panel.</p>
+              <ul class="chips"><li>Kotlin</li><li>Python</li><li>Next.js</li></ul>
+              <p class="status"><span class="lock">Private repository</span></p>
+            </div>
           </div>
+          <span class="xp-timer" aria-hidden="true"></span>
         </article>
-
-        <!-- Tender Package Builder -->
-        <article class="project cut glow" data-cat="tools web">
+        <article class="xp" style="--ac:255,128,149">
+          <button class="xp-hit" type="button" id="xp-btn-6" aria-expanded="false" aria-controls="xp-body-6">
+            <span class="xp-num">06</span>
+            <span class="xp-title">Tender Package Builder</span>
+            <span class="xp-plus" aria-hidden="true"></span>
+          </button>
+          <div class="xp-panel">
+            <div class="xp-art" aria-hidden="true">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
-            <g class="p-dim">
-              <g transform="rotate(-9 70 70)"><rect x="40" y="34" width="64" height="84" rx="3"/><path d="M52 54h40M52 66h40M52 78h28"/></g>
-              <g transform="rotate(5 76 112)"><rect x="48" y="78" width="64" height="84" rx="3"/><path d="M60 98h40M60 110h40M60 122h28"/></g>
-              <g transform="rotate(-3 90 150)"><rect x="60" y="104" width="64" height="84" rx="3"/><path d="M72 124h40M72 136h40"/></g>
-            </g>
-            <g class="p-dim p-thin"><path d="M132 100C160 100 170 100 196 100" stroke-dasharray="3 4"/></g>
-            <path class="p-line" d="M188 96l8 4-8 4"/>
-            <g class="p-line">
-              <rect x="206" y="40" width="72" height="26" rx="3" class="p-solid"/><path d="M216 53h30" class="p-cover"/>
-              <rect x="206" y="72" width="72" height="26" rx="3"/><rect x="206" y="104" width="72" height="26" rx="3"/><rect x="206" y="136" width="72" height="26" rx="3"/>
-              <path d="M216 85h40M216 117h40M216 149h40"/>
-            </g>
+          <g class="p-dim">
+          <g transform="rotate(-9 70 70)"><rect x="40" y="34" width="64" height="84" rx="3"/><path d="M52 54h40M52 66h40M52 78h28"/></g>
+          <g transform="rotate(5 76 112)"><rect x="48" y="78" width="64" height="84" rx="3"/><path d="M60 98h40M60 110h40M60 122h28"/></g>
+          <g transform="rotate(-3 90 150)"><rect x="60" y="104" width="64" height="84" rx="3"/><path d="M72 124h40M72 136h40"/></g>
+          </g>
+          <g class="p-dim p-thin"><path d="M132 100C160 100 170 100 196 100" stroke-dasharray="3 4"/></g>
+          <path class="p-line" d="M188 96l8 4-8 4"/>
+          <g class="p-line">
+          <rect x="206" y="40" width="72" height="26" rx="3" class="p-solid"/><path d="M216 53h30" class="p-cover"/>
+          <rect x="206" y="72" width="72" height="26" rx="3"/><rect x="206" y="104" width="72" height="26" rx="3"/><rect x="206" y="136" width="72" height="26" rx="3"/>
+          <path d="M216 85h40M216 117h40M216 149h40"/>
+          </g>
           </svg>
-          <div class="project-body">
-            <p class="kind">Solo build for AI DevFest 2026</p>
-            <h3>Tender Package Builder</h3>
-            <p>Takes a tender's requirements and a set of PDFs and produces one checked, correctly ordered PDF package, with a cover page and a footer on every page. It runs in the browser, in English and Bangla, and no file is ever uploaded.</p>
-            <ul class="chips"><li>React</li><li>Vite</li><li>pdf-lib</li><li>GitHub Actions</li></ul>
-            <p class="status">
-              <a href="https://rakibulx33.github.io/devfest-241-15-223/" rel="noopener">Live demo</a>
-              <a href="https://github.com/rakibulx33/devfest-241-15-223" rel="noopener">Source on GitHub</a>
-            </p>
+            </div>
+            <div class="xp-body" id="xp-body-6" role="region" aria-labelledby="xp-btn-6">
+              <p class="xp-count" aria-hidden="true">06 / 06</p>
+              <p class="kind">Solo build for AI DevFest 2026</p>
+              <h3>Tender Package Builder</h3>
+              <p class="xp-desc">Takes a tender's requirements and a set of PDFs and produces one checked, correctly ordered PDF package, with a cover page and a footer on every page. It runs in the browser, in English and Bangla, and no file is ever uploaded.</p>
+              <ul class="chips"><li>React</li><li>Vite</li><li>pdf-lib</li><li>GitHub Actions</li></ul>
+              <p class="status"><a href="https://rakibulx33.github.io/devfest-241-15-223/" rel="noopener">Live demo</a> <a href="https://github.com/rakibulx33/devfest-241-15-223" rel="noopener">Source on GitHub</a></p>
+            </div>
           </div>
+          <span class="xp-timer" aria-hidden="true"></span>
         </article>
       </div>
     </div>
@@ -413,17 +464,17 @@
         <button type="button" class="filter" data-filter="tools" aria-pressed="false">Tools and experiments <span class="count"></span></button>
       </div>
       <ul class="index" id="index">
-        <li data-cat="tools web"><div class="ix-main"><h4>Smart Escape</h4><p>Hackathon build. Evacuation route simulator that finds the lowest-cost route to an open exit and recalculates as corridors or exits are blocked. English and Bangla, keyboard accessible.</p></div><p class="ix-stack">JavaScript, SVG</p><p class="ix-links"><a href="https://rakibulx33.github.io/AI-DEV-FEST-2026-VIBE-CODING-MOCK/" rel="noopener">Live demo</a><a href="https://github.com/rakibulx33/AI-DEV-FEST-2026-VIBE-CODING-MOCK" rel="noopener">Source</a></p></li>
-        <li data-cat="web"><div class="ix-main"><h4>Mosque Admin Panel</h4><p>Bengali admin system for members with family trees, donations, expenses, a bank ledger and printable Bengali reports. Role-based access with CSRF protection and rate limiting.</p></div><p class="ix-stack">Express, PostgreSQL, Knex, EJS</p><p class="ix-links"><a href="https://github.com/rakibulx33/Baitur-Rahman-Jame-Mosjid" rel="noopener">Source</a></p></li>
-        <li data-cat="web ai"><div class="ix-main"><h4>DIU Job Hub</h4><p>University job platform with student, recruiter and admin portals, AI job matching and academic eligibility scoring.</p></div><p class="ix-stack">Next.js 15, TypeScript, MySQL, Groq</p><p class="ix-links"><a href="https://github.com/rakibulx33/diujobhub" rel="noopener">Source</a></p></li>
-        <li data-cat="ai"><div class="ix-main"><h4>Upbit Watch</h4><p>Listing-alert bot that watches Upbit, Binance, Bithumb and Coinbase for new listings, streams live status over WebSocket and sends Telegram alerts.</p></div><p class="ix-stack">Python, FastAPI, WebSocket, SQLite</p><p class="ix-links"><a href="https://github.com/rakibulx33/firstlight" rel="noopener">Source</a></p></li>
-        <li data-cat="web"><div class="ix-main"><h4>MealNChill</h4><p>Mess management system for meals, attendance, inventory and shared finances in hostels and shared living spaces.</p></div><p class="ix-stack">Next.js 15, TypeScript, MongoDB</p><p class="ix-links"><a href="https://github.com/rakibulx33/MealNChill" rel="noopener">Source</a></p></li>
-        <li data-cat="mobile"><div class="ix-main"><h4>WaitWise</h4><p>Queue management with a JavaFX admin desktop app and a mobile web view. Customers join by QR code and see their live position.</p></div><p class="ix-stack">Java, JavaFX, MySQL</p><p class="ix-links"><a href="https://github.com/rakibulx33/WaitWise" rel="noopener">Source</a></p></li>
-        <li data-cat="tools"><div class="ix-main"><h4>BongoScript</h4><p>Team compiler project: a programming language with Bangla keywords, transpiled to C. Built for the compiler design course.</p></div><p class="ix-stack">Flex, Bison, C, Node.js</p><p class="ix-links"><a href="https://github.com/toha129/bongoscript_project" rel="noopener">Source</a></p></li>
-        <li data-cat="mobile"><div class="ix-main"><h4>Winternet Meter</h4><p>Windows desktop app: a floating, always-on-top meter showing live upload and download speed, with a customizable look.</p></div><p class="ix-stack">C#, .NET</p><p class="ix-links"><a href="https://github.com/rakibulx33/WinternetMeter" rel="noopener">Source</a></p></li>
-        <li data-cat="tools web"><div class="ix-main"><h4>Cheatsheet Generator</h4><p>Drag-and-drop, block-based cheatsheet builder with templates and PDF export.</p></div><p class="ix-stack">React, dnd-kit, jsPDF</p><p class="ix-links"><a href="https://github.com/rakibulx33/cheatSheetGenerator" rel="noopener">Source</a></p></li>
-        <li data-cat="mobile ai"><div class="ix-main"><h4>NS Order Forward</h4><p>Android automation app for processing orders in the background.</p></div><p class="ix-stack">Kotlin, Android</p><p class="ix-links"><span class="lock">Private repository</span></p></li>
-        <li data-cat="web"><div class="ix-main"><h4>ClanWar Coach</h4><p>Clan and player stats tracker for Clash of Clans, served through a caching proxy for the official API.</p></div><p class="ix-stack">React, Express, Recharts</p><p class="ix-links"><a href="https://github.com/rakibulx33/Clash-of-Clan-Status" rel="noopener">Source</a></p></li>
+        <li data-cat="tools web"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">Smart Escape</button></h4><p class="ix-desc">Hackathon build. Evacuation route simulator that finds the lowest-cost route to an open exit and recalculates as corridors or exits are blocked. English and Bangla, keyboard accessible.</p></div><p class="ix-stack">JavaScript, SVG</p><p class="ix-links"><a href="https://rakibulx33.github.io/AI-DEV-FEST-2026-VIBE-CODING-MOCK/" rel="noopener">Live demo</a><a href="https://github.com/rakibulx33/AI-DEV-FEST-2026-VIBE-CODING-MOCK" rel="noopener">Source</a></p></li>
+        <li data-cat="web"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">Mosque Admin Panel</button></h4><p class="ix-desc">Bengali admin system for members with family trees, donations, expenses, a bank ledger and printable Bengali reports. Role-based access with CSRF protection and rate limiting.</p></div><p class="ix-stack">Express, PostgreSQL, Knex, EJS</p><p class="ix-links"><a href="https://github.com/rakibulx33/Baitur-Rahman-Jame-Mosjid" rel="noopener">Source</a></p></li>
+        <li data-cat="web ai"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">DIU Job Hub</button></h4><p class="ix-desc">University job platform with student, recruiter and admin portals, AI job matching and academic eligibility scoring.</p></div><p class="ix-stack">Next.js 15, TypeScript, MySQL, Groq</p><p class="ix-links"><a href="https://github.com/rakibulx33/diujobhub" rel="noopener">Source</a></p></li>
+        <li data-cat="ai"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">Upbit Watch</button></h4><p class="ix-desc">Listing-alert bot that watches Upbit, Binance, Bithumb and Coinbase for new listings, streams live status over WebSocket and sends Telegram alerts.</p></div><p class="ix-stack">Python, FastAPI, WebSocket, SQLite</p><p class="ix-links"><a href="https://github.com/rakibulx33/firstlight" rel="noopener">Source</a></p></li>
+        <li data-cat="web"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">MealNChill</button></h4><p class="ix-desc">Mess management system for meals, attendance, inventory and shared finances in hostels and shared living spaces.</p></div><p class="ix-stack">Next.js 15, TypeScript, MongoDB</p><p class="ix-links"><a href="https://github.com/rakibulx33/MealNChill" rel="noopener">Source</a></p></li>
+        <li data-cat="mobile"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">WaitWise</button></h4><p class="ix-desc">Queue management with a JavaFX admin desktop app and a mobile web view. Customers join by QR code and see their live position.</p></div><p class="ix-stack">Java, JavaFX, MySQL</p><p class="ix-links"><a href="https://github.com/rakibulx33/WaitWise" rel="noopener">Source</a></p></li>
+        <li data-cat="tools"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">BongoScript</button></h4><p class="ix-desc">Team compiler project: a programming language with Bangla keywords, transpiled to C. Built for the compiler design course.</p></div><p class="ix-stack">Flex, Bison, C, Node.js</p><p class="ix-links"><a href="https://github.com/toha129/bongoscript_project" rel="noopener">Source</a></p></li>
+        <li data-cat="mobile"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">Winternet Meter</button></h4><p class="ix-desc">Windows desktop app: a floating, always-on-top meter showing live upload and download speed, with a customizable look.</p></div><p class="ix-stack">C#, .NET</p><p class="ix-links"><a href="https://github.com/rakibulx33/WinternetMeter" rel="noopener">Source</a></p></li>
+        <li data-cat="tools web"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">Cheatsheet Generator</button></h4><p class="ix-desc">Drag-and-drop, block-based cheatsheet builder with templates and PDF export.</p></div><p class="ix-stack">React, dnd-kit, jsPDF</p><p class="ix-links"><a href="https://github.com/rakibulx33/cheatSheetGenerator" rel="noopener">Source</a></p></li>
+        <li data-cat="mobile ai"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">NS Order Forward</button></h4><p class="ix-desc">Android automation app for processing orders in the background.</p></div><p class="ix-stack">Kotlin, Android</p><p class="ix-links"><span class="lock">Private repository</span></p></li>
+        <li data-cat="web"><div class="ix-main"><h4><button type="button" class="ix-toggle" aria-expanded="false">ClanWar Coach</button></h4><p class="ix-desc">Clan and player stats tracker for Clash of Clans, served through a caching proxy for the official API.</p></div><p class="ix-stack">React, Express, Recharts</p><p class="ix-links"><a href="https://github.com/rakibulx33/Clash-of-Clan-Status" rel="noopener">Source</a></p></li>
       </ul>
       <p class="empty" id="empty" hidden>Nothing in this group yet.</p>
     </div>
