@@ -222,7 +222,7 @@
       return `<li class="person cut glow"><div class="avatar${p.photo ? " photo" : ""}"${p.photo ? "" : ' aria-hidden="true"'}>${avatar}</div><div class="pbody"><h3>${esc(p.name)}</h3>${p.role ? `<p class="role">${esc(p.role)}</p>` : ""}${p.blurb ? `<p class="blurb">${esc(p.blurb)}</p>` : ""}${tags ? `<ul class="tags">${tags}</ul>` : ""}${links ? `<p class="links">${links}</p>` : ""}</div></li>`;
     }).join("");
     people.hidden = false;
-    $("#disciplines").before(people);
+    $(".principles").before(people);
   }
 
   /* ---------- Section eyebrows: 01 Services, 02 Solutions ... ---------- */
@@ -369,24 +369,22 @@
 
   const playIntro = () => { window.dispatchEvent(new Event("gk:intro")); intro.play(); };
   if (loader) {
-    let seen = false;
-    try { seen = sessionStorage.getItem("gk-intro") === "1"; sessionStorage.setItem("gk-intro", "1"); } catch (e) { /* storage blocked */ }
-    if (seen) { loader.remove(); playIntro(); }
-    else {
-      if (lenis) lenis.stop();
-      const minWait = new Promise((r) => setTimeout(r, 1500));
-      const loaded = new Promise((r) => {
-        if (document.readyState === "complete") r();
-        else window.addEventListener("load", r, { once: true });
-        setTimeout(r, 2600);
-      });
-      Promise.all([minWait, loaded]).then(() => {
-        gsap.timeline({ onComplete: () => { loader.remove(); if (lenis) lenis.start(); } })
-          .to(loader.children, { opacity: 0, y: -24, duration: 0.35, ease: "power2.in", stagger: 0.05 })
-          .to(loader, { clipPath: "inset(0 0 100% 0)", duration: 0.9, ease: "power4.inOut" }, "-=0.05")
-          .add(playIntro, "-=0.5");
-      });
-    }
+    // full intro on the first load of a visit, a quicker one on every refresh after that
+    const quick = root.classList.contains("gk-quick");
+    try { sessionStorage.setItem("gk-intro", "1"); } catch (e) { /* storage blocked */ }
+    if (lenis) lenis.stop();
+    const minWait = new Promise((r) => setTimeout(r, quick ? 650 : 1550));
+    const loaded = new Promise((r) => {
+      if (document.readyState === "complete") r();
+      else window.addEventListener("load", r, { once: true });
+      setTimeout(r, quick ? 1800 : 2600);
+    });
+    Promise.all([minWait, loaded]).then(() => {
+      gsap.timeline({ onComplete: () => { loader.remove(); if (lenis) lenis.start(); } })
+        .to(loader.children, { opacity: 0, y: -24, duration: quick ? 0.2 : 0.35, ease: "power2.in", stagger: 0.05 })
+        .to(loader, { clipPath: "inset(0 0 100% 0)", duration: quick ? 0.6 : 0.9, ease: "power4.inOut" }, "-=0.05")
+        .add(playIntro, "-=0.45");
+    });
   } else playIntro();
 
   /* eyebrows slide in */

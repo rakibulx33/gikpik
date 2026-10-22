@@ -500,6 +500,14 @@ body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opa
 @keyframes ld-fill{to{fill:rgba(0,235,138,1)}}
 .loader p{font:700 1.05rem/1 var(--display);letter-spacing:.55em;padding-left:.55em;color:var(--ink-soft);opacity:0;animation:ld-text .6s .7s ease forwards}
 @keyframes ld-text{to{opacity:1}}
+.loader .ld-bar{display:block;width:132px;height:2px;margin-top:-8px;overflow:hidden;background:rgba(155,164,216,.2);opacity:0;animation:ld-text .4s .45s ease forwards}
+.loader .ld-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--mint),var(--aqua));box-shadow:0 0 10px rgba(0,235,138,.8);transform:scaleX(0);transform-origin:left;animation:ld-bar 1.45s .1s cubic-bezier(.6,0,.2,1) forwards}
+@keyframes ld-bar{to{transform:scaleX(1)}}
+/* quicker intro on refresh */
+.gk-quick .loader path{animation-duration:.6s,.25s;animation-delay:0s,.4s}
+.gk-quick .loader p{animation-duration:.35s;animation-delay:.1s}
+.gk-quick .loader .ld-bar{animation-delay:.05s}
+.gk-quick .loader .ld-bar i{animation-duration:.6s;animation-delay:0s}
 
 /* section scale + eyebrow */
 .section h2,.hpin-head h2{font-size:clamp(2.2rem,5.2vw,4.4rem)}
@@ -636,3 +644,4 @@ body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opa
 /* project cards: plates glow on hover */
 .project .plate .p-line{transition:filter .4s}
 .project:hover .plate .p-line{filter:drop-shadow(0 0 6px rgba(0,235,138,.75))}
+.people+.principles{margin-top:clamp(28px,4vw,48px)}
