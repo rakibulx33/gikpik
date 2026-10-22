@@ -7,6 +7,86 @@
   const root = document.documentElement;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  /* ---------- Language: English at /, Bangla at /bn/ ---------- */
+  const BN = root.lang === "bn";
+  const num = (v) => (BN ? String(v).replace(/\d/g, (d) => "০১২৩৪৫৬৭৮৯"[d]) : String(v));
+  // site root, so data paths (team photos) resolve from /bn/ as well
+  const BASE = document.currentScript && document.currentScript.src ? new URL("../", document.currentScript.src).href : "";
+  const T = BN ? {
+    segments: {
+      clinic: {
+        today: "রোগীর সিরিয়াল, বিল আর রসিদ হাতে লেখা হয়, আর এন্ট্রিতে ভুল হয়।",
+        flow: ["অ্যাপয়েন্টমেন্ট", "বিলিং", "রসিদ প্রিন্ট", "দৈনিক রিপোর্ট"],
+        foot: "প্রথম প্রজেক্ট হিসেবে ভালো: রোগীর তথ্য, সেবা নির্বাচন, বিলিং, প্রিন্ট আর দৈনিক রিপোর্টসহ একটি সহজ রসিদ সিস্টেম। ডেমোতে শুধু নমুনা ডেটা ব্যবহার হয়, কখনো রোগীর আসল তথ্য নয়।"
+      },
+      shop: {
+        today: "স্টক, বিক্রি আর কার কাছে কত বাকি, সব খাতায় লেখা থাকে।",
+        flow: ["পিওএস", "ইনভেন্টরি", "ইনভয়েস", "স্টক কমার অ্যালার্ট"],
+        foot: "যে অংশে আপনার প্রতিদিন সবচেয়ে বেশি সময় যায়, সেখান থেকেই শুরু করব।"
+      },
+      seller: {
+        today: "মেসেঞ্জার আর ফর্মের অর্ডার আলাদা আলাদা জায়গায় আসে, একটা একটা করে সামলাতে হয়।",
+        flow: ["অর্ডার প্যানেল", "স্ট্যাটাস আপডেট", "ইনভেন্টরি ট্র্যাকিং"],
+        foot: "পেমেন্ট আর ডেলিভারি ইন্টিগ্রেশন প্রতিটি প্রোভাইডারের নিয়ম মেনে করা হয়।"
+      },
+      agency: {
+        today: "লিড, ফলো-আপ আর বারবার করা কাজ নির্ভর করে কারো মনে রাখার ওপর।",
+        flow: ["সিআরএম ওয়ার্কফ্লো", "অটোমেটেড রিমাইন্ডার", "রিপোর্টিং"],
+        foot: "আপনার টিম সবচেয়ে বেশি যে ধাপগুলো বারবার করে, আগে সেগুলোর একটা ম্যাপ তৈরি করি।"
+      },
+      startup: {
+        today: "আইডিয়া আছে, কিন্তু পুরো ইন-হাউস টিম নেই।",
+        flow: ["সম্ভাব্যতা যাচাই", "এমভিপি", "ইটারেশন", "সাপোর্ট"],
+        foot: "কিছু বানানোর আগে যাচাই করি আইডিয়াটা বাস্তবসম্মত কি না, তারপর এমন একটি প্রথম ভার্সন দিই যা ব্যবহারকারীদের সামনে রাখা যায়।"
+      }
+    },
+    req: { "f-name": "আপনার নাম লিখুন।", "f-email": "উত্তর দেওয়ার জন্য একটি ইমেইল ঠিকানা দিন।", "f-problem": "কাজ বা প্রজেক্টটি সম্পর্কে একটু লিখুন।" },
+    badEmail: "ইমেইল ঠিকানাটি অসম্পূর্ণ মনে হচ্ছে।",
+    missing: "কিছু তথ্য বাকি আছে। চিহ্নিত ঘরগুলো দেখুন।",
+    sent: (to) => `ব্রিফসহ আপনার ইমেইল অ্যাপ খুলে যাওয়ার কথা। কিছু না হলে "ব্রিফ কপি করুন" চাপুন এবং ${to} ঠিকানায় ইমেইল করুন।`,
+    copied: (to) => `ব্রিফ কপি হয়েছে। ${to} ঠিকানায় একটি ইমেইলে পেস্ট করুন।`,
+    subject: (n) => `প্রজেক্ট ব্রিফ: ${n}`,
+    lines: { name: "নাম", email: "ইমেইল", biz: "ব্যবসা", start: "যেখান থেকে শুরু", when: "সময়সীমা বা বাজেট", problem: "যে কাজে সবচেয়ে বেশি সময় যায়, বা যা বানাতে চাই:" },
+    clock: (t) => `ঢাকায় এখন সময় ${t}।`,
+    locale: "bn-BD"
+  } : {
+    segments: {
+      clinic: {
+        today: "Patient serials, bills and receipts are written by hand, and entries go wrong.",
+        flow: ["Appointment", "Billing", "Receipt print", "Daily report"],
+        foot: "A good first project: a simple receipt system with patient details, service selection, billing, printing and a daily report. Demos use sample data, never real patient information."
+      },
+      shop: {
+        today: "Stock, sales and what customers owe are kept in a ledger notebook.",
+        flow: ["POS", "Inventory", "Invoice", "Low-stock alert"],
+        foot: "We would start with whichever part costs you the most time each day."
+      },
+      seller: {
+        today: "Orders from Messenger and forms are handled one by one, in separate places.",
+        flow: ["Order panel", "Status update", "Inventory tracking"],
+        foot: "Payment and delivery integrations follow each provider's rules."
+      },
+      agency: {
+        today: "Leads, follow-ups and repeated tasks depend on someone remembering them.",
+        flow: ["CRM workflow", "Automated reminders", "Reporting"],
+        foot: "We start by mapping the steps your team repeats most."
+      },
+      startup: {
+        today: "You have an idea, but no complete in-house team.",
+        flow: ["Feasibility", "MVP", "Iteration", "Support"],
+        foot: "We check that the idea is feasible before building anything, then ship a first version you can put in front of users."
+      }
+    },
+    req: { "f-name": "Add your name.", "f-email": "Add an email address we can reply to.", "f-problem": "Tell us a little about the task or project." },
+    badEmail: "That email address looks incomplete.",
+    missing: "A few details are missing. Check the highlighted fields.",
+    sent: (to) => `Your email app should open with the brief ready to send. If nothing happens, use Copy brief and email ${to}.`,
+    copied: (to) => `Brief copied. Paste it into an email to ${to}.`,
+    subject: (n) => `Project brief from ${n}`,
+    lines: { name: "Name", email: "Email", biz: "Business", start: "Starting point", when: "Timeline or budget", problem: "What takes the most time, or what I want to build:" },
+    clock: (t) => `It is ${t} in Dhaka right now.`,
+    locale: "en-GB"
+  };
   const hasGsap = !!(window.gsap && window.ScrollTrigger);
   const animate = hasGsap && !reduced;
   if (!hasGsap) root.classList.add("fallback");
@@ -122,7 +202,7 @@
   const indexList = $("#index");
   const empty = $("#empty");
   const hasCat = (el, cat) => cat === "all" || el.dataset.cat.split(" ").includes(cat);
-  filterBtns.forEach((b) => { $(".count", b).textContent = rows.filter((el) => hasCat(el, b.dataset.filter)).length; });
+  filterBtns.forEach((b) => { $(".count", b).textContent = num(rows.filter((el) => hasCat(el, b.dataset.filter)).length); });
   const applyFilter = (cat) => {
     let shown = 0;
     rows.forEach((el) => {
@@ -301,33 +381,7 @@
   }
 
   /* ---------- Solutions explorer ---------- */
-  const SEGMENTS = {
-    clinic: {
-      today: "Patient serials, bills and receipts are written by hand, and entries go wrong.",
-      flow: ["Appointment", "Billing", "Receipt print", "Daily report"],
-      foot: "A good first project: a simple receipt system with patient details, service selection, billing, printing and a daily report. Demos use sample data, never real patient information."
-    },
-    shop: {
-      today: "Stock, sales and what customers owe are kept in a ledger notebook.",
-      flow: ["POS", "Inventory", "Invoice", "Low-stock alert"],
-      foot: "We would start with whichever part costs you the most time each day."
-    },
-    seller: {
-      today: "Orders from Messenger and forms are handled one by one, in separate places.",
-      flow: ["Order panel", "Status update", "Inventory tracking"],
-      foot: "Payment and delivery integrations follow each provider's rules."
-    },
-    agency: {
-      today: "Leads, follow-ups and repeated tasks depend on someone remembering them.",
-      flow: ["CRM workflow", "Automated reminders", "Reporting"],
-      foot: "We start by mapping the steps your team repeats most."
-    },
-    startup: {
-      today: "You have an idea, but no complete in-house team.",
-      flow: ["Feasibility", "MVP", "Iteration", "Support"],
-      foot: "We check that the idea is feasible before building anything, then ship a first version you can put in front of users."
-    }
-  };
+  const SEGMENTS = T.segments;
   const tabs = $$('[role="tab"]');
   const panel = $("#panel");
   const showSegment = (tab, focus) => {
@@ -365,7 +419,11 @@
   /* ---------- Team: render roster if supplied ---------- */
   const ACCENTS = ["0,235,138", "91,140,255", "214,128,200", "255,200,87"];
   // each person keeps their own colour, then the order is shuffled on every visit
-  const team = (Array.isArray(window.GIKPIK_TEAM) ? window.GIKPIK_TEAM : []).map((p, i) => ({ ...p, ac: ACCENTS[i % ACCENTS.length] }));
+  const team = (Array.isArray(window.GIKPIK_TEAM) ? window.GIKPIK_TEAM : []).map((p, i) => {
+    const d = BN && p.bn ? { ...p, ...p.bn } : { ...p };
+    if (d.photo && BASE) d.photo = new URL(d.photo, BASE).href;
+    return { ...d, ac: ACCENTS[i % ACCENTS.length] };
+  });
   for (let i = team.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [team[i], team[j]] = [team[j], team[i]]; }
   if (team.length) {
     const people = $("#people");
@@ -398,7 +456,7 @@
     const eb = document.createElement("p");
     eb.className = "eyebrow";
     eb.setAttribute("aria-hidden", "true");
-    eb.innerHTML = `<b>${String(i + 1).padStart(2, "0")}</b>${sec.dataset.label}`;
+    eb.innerHTML = `<b>${num(String(i + 1).padStart(2, "0"))}</b>${sec.dataset.label}`;
     h2.before(eb);
   });
 
@@ -407,8 +465,7 @@
   const select = $("#f-start");
   $$("[data-offer]").forEach((b) => {
     b.addEventListener("click", () => {
-      const opt = Array.from(select.options).find((o) => o.text.startsWith(b.dataset.offer));
-      if (opt) select.value = opt.value || opt.text;
+      if (Array.from(select.options).some((o) => o.value === b.dataset.offer)) select.value = b.dataset.offer;
       scrollToEl($("#contact"), 0);
       setTimeout(() => $("#f-problem").focus({ preventScroll: true }), reduced ? 0 : 1500);
     });
@@ -417,7 +474,7 @@
   /* ---------- Brief: opens the visitor's email app ---------- */
   const note = $("#form-note");
   const TO = form.getAttribute("action").replace("mailto:", "");
-  const required = [["f-name", "Add your name."], ["f-email", "Add an email address we can reply to."], ["f-problem", "Tell us a little about the task or project."]];
+  const required = Object.entries(T.req);
   const clearErrors = () => {
     $$(".err", form).forEach((n) => n.remove());
     $$("[aria-invalid]", form).forEach((n) => n.removeAttribute("aria-invalid"));
@@ -432,28 +489,30 @@
         el.setAttribute("aria-invalid", "true");
         const span = document.createElement("span");
         span.className = "err";
-        span.textContent = el.type === "email" && el.value.trim() ? "That email address looks incomplete." : msg;
+        span.textContent = el.type === "email" && el.value.trim() ? T.badEmail : msg;
         el.insertAdjacentElement("afterend", span);
         first = first || el;
       }
     });
-    if (first) { first.focus(); note.textContent = "A few details are missing. Check the highlighted fields."; }
+    if (first) { first.focus(); note.textContent = T.missing; }
     return !first;
   };
   const brief = () => {
     const v = (id) => document.getElementById(id).value.trim();
+    const L = T.lines;
+    const start = select.options[select.selectedIndex] ? select.options[select.selectedIndex].text : select.value;
     return [
-      `Name: ${v("f-name")}`, `Email: ${v("f-email")}`, `Business: ${v("f-biz") || "-"}`,
-      `Starting point: ${select.value}`, `Timeline or budget: ${v("f-when") || "-"}`, "",
-      "What takes the most time, or what I want to build:", v("f-problem")
+      `${L.name}: ${v("f-name")}`, `${L.email}: ${v("f-email")}`, `${L.biz}: ${v("f-biz") || "-"}`,
+      `${L.start}: ${start}`, `${L.when}: ${v("f-when") || "-"}`, "",
+      L.problem, v("f-problem")
     ].join("\n");
   };
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!validate()) return;
-    const subject = `Project brief from ${$("#f-name").value.trim()}`;
+    const subject = T.subject($("#f-name").value.trim());
     window.location.href = `mailto:${TO}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(brief())}`;
-    note.textContent = `Your email app should open with the brief ready to send. If nothing happens, use Copy brief and email ${TO}.`;
+    note.textContent = T.sent(TO);
   });
   $("#copy-brief").addEventListener("click", async () => {
     if (!validate()) return;
@@ -464,19 +523,19 @@
       ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
       document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove();
     }
-    note.textContent = `Brief copied. Paste it into an email to ${TO}.`;
+    note.textContent = T.copied(TO);
   });
 
   /* ---------- Dhaka clock + year ---------- */
   const clock = $("#dhaka-time");
   const tick = () => {
     try {
-      const t = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Asia/Dhaka" }).format(new Date());
-      clock.textContent = `It is ${t} in Dhaka right now.`;
+      const t = new Intl.DateTimeFormat(T.locale, { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Asia/Dhaka" }).format(new Date());
+      clock.textContent = T.clock(t);
     } catch { clock.textContent = ""; }
   };
   tick(); setInterval(tick, 30000);
-  $("#year").textContent = new Date().getFullYear();
+  $("#year").textContent = num(new Date().getFullYear());
 
   /* ======================================================================
      Motion
@@ -566,10 +625,10 @@
   counters.forEach((c) => {
     const end = Number(c.dataset.count);
     const o = { v: 0 };
-    c.textContent = "0";
+    c.textContent = num(0);
     ScrollTrigger.create({
       trigger: c, start: "top 90%", once: true,
-      onEnter: () => gsap.to(o, { v: end, duration: 1.8, ease: "power3.out", onUpdate: () => { c.textContent = Math.round(o.v); } })
+      onEnter: () => gsap.to(o, { v: end, duration: 1.8, ease: "power3.out", onUpdate: () => { c.textContent = num(Math.round(o.v)); } })
     });
   });
   gsap.fromTo(".stat", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: "power3.out", clearProps: "transform", scrollTrigger: { trigger: ".stats", start: "top 85%", once: true } });
