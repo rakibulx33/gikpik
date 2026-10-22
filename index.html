@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gikpik | Software development and business automation studio</title>
-  <meta name="description" content="Gikpik builds websites, web apps, automation workflows and e-commerce systems for growing businesses in Bangladesh and abroad. Geek thinking. Peak solutions.">
+  <title>Gikpik | Small team. Serious software.</title>
+  <meta name="description" content="Gikpik is a small, focused team that builds websites, mobile apps and automation for businesses in Bangladesh and abroad. Tell us the problem. We will tell you what is possible.">
   <meta name="theme-color" content="#03062B">
   <meta name="color-scheme" content="dark">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Gikpik">
-  <meta property="og:title" content="Gikpik | Geek thinking. Peak solutions.">
-  <meta property="og:description" content="A software development and business automation studio. We assess feasibility first, then build the right solution.">
+  <meta property="og:title" content="Gikpik | Small team. Serious software.">
+  <meta property="og:description" content="Websites, mobile apps and automation from a small team that owns the whole job. Geek thinking. Peak solutions.">
   <meta property="og:image" content="https://rakibulx33.github.io/gikpik/assets/brand/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -20,16 +20,19 @@
 
   <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png">
-  <link rel="preload" href="assets/fonts/chakra-petch-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/chakra-petch-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="css/styles.css">
 
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"ProfessionalService","name":"Gikpik","slogan":"Geek thinking. Peak solutions.","description":"Software development and business automation studio.","areaServed":["Bangladesh","Worldwide"],"address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"founder":{"@type":"Person","name":"Rakibul Hasan"}}
+  {"@context":"https://schema.org","@type":"ProfessionalService","name":"Gikpik","slogan":"Geek thinking. Peak solutions.","description":"A small team building websites, mobile apps and business automation.","areaServed":["Bangladesh","Worldwide"],"address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"}}
   </script>
 </head>
 <body>
-  <a class="skip" href="#work">Skip to content</a>
+  <a class="skip" href="#services">Skip to content</a>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
 
   <!-- ============ HEADER ============ -->
   <header class="site-header" id="site-header">
@@ -39,11 +42,11 @@
         <span class="wordmark">GiKPiK</span>
       </a>
       <nav class="main-nav" id="main-nav" aria-label="Primary">
-        <a href="#work">Work</a>
         <a href="#services">Services</a>
-        <a href="#fit">Who we help</a>
+        <a href="#fit">Solutions</a>
+        <a href="#work">Work</a>
+        <a href="#team">Team</a>
         <a href="#process">How we work</a>
-        <a href="#about">About</a>
         <a class="btn btn-primary btn-sm" href="#contact">Start a project</a>
       </nav>
       <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="main-nav">
@@ -64,67 +67,179 @@
     <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
     <div class="container hero-grid">
       <div class="hero-copy">
+        <p class="status-pill"><span class="live" aria-hidden="true"></span>Open for new projects</p>
         <h1 class="display">
-          <span class="line">We build software.</span>
-          <span class="line">We automate work.</span>
+          <span class="line"><span class="li">Small team.</span></span>
+          <span class="line"><span class="li grad">Serious software.</span></span>
         </h1>
-        <p class="lede">Gikpik is a software development and business automation studio. We turn ideas and repeated manual work into practical tools for growing businesses in Bangladesh and abroad.</p>
+        <p class="lede">Gikpik designs and builds websites, mobile apps and automation that take work off your plate. Tell us the problem. We will tell you what is possible, then build it.</p>
         <div class="actions">
           <a class="btn btn-primary" href="#contact">Discuss your project</a>
-          <a class="btn btn-ghost" href="#work">See our work</a>
+          <a class="btn btn-ghost" href="#work">See what we have built</a>
         </div>
-        <p class="hero-note">Every project starts with a free feasibility call. We tell you what is possible, what is conditional and what is not worth building.</p>
+        <p class="hero-note">Every project starts with a free feasibility call: straight answers on what is possible, what is conditional and what is not worth building.</p>
       </div>
 
       <div class="hero-stage" id="stage" aria-hidden="true">
+        <canvas id="particles"></canvas>
         <svg class="mark" id="mark" viewBox="0 0 512 512" focusable="false">
           <defs>
             <linearGradient id="gkPeak" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#00EB8A"/>
               <stop offset="1" stop-color="#00E6B6"/>
             </linearGradient>
-            <linearGradient id="gkSweep" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-              <stop offset=".5" stop-color="#fff" stop-opacity=".55"/>
-              <stop offset="1" stop-color="#fff" stop-opacity="0"/>
-            </linearGradient>
-            <clipPath id="gkClip">
-              <path d="M256.5,0 L512,265.5 L268.5,512 L268.5,240 L272.5,240 L318,285.5 L318,342 L394,266 L256.5,126 L119,266 L195,342 L195,285.5 L240.5,240 L244.5,240 L244.5,512 L0,265.5 Z"/>
-            </clipPath>
           </defs>
-          <path class="mark-fill" fill="url(#gkPeak)" d="M256.5,0 L512,265.5 L268.5,512 L268.5,240 L272.5,240 L318,285.5 L318,342 L394,266 L256.5,126 L119,266 L195,342 L195,285.5 L240.5,240 L244.5,240 L244.5,512 L0,265.5 Z"/>
-          <g clip-path="url(#gkClip)"><rect class="mark-sweep" x="0" y="0" width="512" height="190" fill="url(#gkSweep)"/></g>
-          <path class="mark-outline" pathLength="1" d="M256.5,0 L512,265.5 L268.5,512 L268.5,240 L272.5,240 L318,285.5 L318,342 L394,266 L256.5,126 L119,266 L195,342 L195,285.5 L240.5,240 L244.5,240 L244.5,512 L0,265.5 Z"/>
+          <path fill="url(#gkPeak)" d="M256.5,0 L512,265.5 L268.5,512 L268.5,240 L272.5,240 L318,285.5 L318,342 L394,266 L256.5,126 L119,266 L195,342 L195,285.5 L240.5,240 L244.5,240 L244.5,512 L0,265.5 Z"/>
         </svg>
       </div>
     </div>
 
     <div class="container hero-foot">
       <p class="tagline">Geek thinking. Peak solutions.</p>
-      <a class="climb" href="#work">Scroll to climb</a>
+      <a class="climb" href="#services">Scroll to climb</a>
+    </div>
+  </section>
+
+  <!-- ============ NUMBERS ============ -->
+  <section class="stats" aria-label="Gikpik in numbers">
+    <div class="container stats-row">
+      <div class="stat"><p class="num"><span data-count="17">17</span></p><p class="cap">projects built</p></div>
+      <div class="stat"><p class="num"><span data-count="6">6</span></p><p class="cap">services under one roof</p></div>
+      <div class="stat"><p class="num"><span data-count="5">5</span></p><p class="cap">quality gates before launch</p></div>
+      <div class="stat"><p class="num"><span data-count="3">3</span></p><p class="cap">ways to start a project</p></div>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE BANDS ============ -->
+  <div class="bands" aria-hidden="true">
+    <div class="band band-mint" data-dir="-1">
+      <div class="marquee">
+        <ul><li>Websites</li><li>Web apps</li><li>Mobile apps</li><li>Automation</li><li>AI workflows</li><li>E-commerce</li><li>Dashboards</li><li>Integrations</li></ul>
+        <ul><li>Websites</li><li>Web apps</li><li>Mobile apps</li><li>Automation</li><li>AI workflows</li><li>E-commerce</li><li>Dashboards</li><li>Integrations</li></ul>
+      </div>
+    </div>
+    <div class="band band-line" data-dir="1">
+      <div class="marquee">
+        <ul><li>Laravel</li><li>Node.js</li><li>Next.js</li><li>React</li><li>Python</li><li>FastAPI</li><li>Kotlin</li><li>Supabase</li><li>PostgreSQL</li><li>Docker</li></ul>
+        <ul><li>Laravel</li><li>Node.js</li><li>Next.js</li><li>React</li><li>Python</li><li>FastAPI</li><li>Kotlin</li><li>Supabase</li><li>PostgreSQL</li><li>Docker</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section services" id="services" data-label="Services">
+    <div class="container">
+      <header class="section-head">
+        <h2 class="split">Websites, apps and automation. One team.</h2>
+        <p>Most clients come to us with a problem, not a spec. We turn it into software that works, and we stay to keep it working.</p>
+      </header>
+
+      <div class="service-primary">
+        <article class="service cut glow">
+          <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="9" width="38" height="30" rx="2"/><path d="M5 17h38M12 13h.01M17 13h.01M12 25h14M12 31h22"/></svg>
+          <h3>Websites and web apps</h3>
+          <p>Business sites, landing pages, dashboards, admin panels, booking systems and customer portals. Responsive, fast and built so someone can maintain them.</p>
+          <p class="result"><strong>You get</strong> your business online, with the daily work digital.</p>
+        </article>
+        <article class="service cut glow">
+          <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="14" y="4" width="20" height="40" rx="4"/><path d="M21 9h6M24 38h.01M20 18h8M20 24h8M20 30h5"/></svg>
+          <h3>Mobile apps</h3>
+          <p>Business apps for Android, and iOS-compatible builds when a project needs them: customer portals, staff apps and field data collection.</p>
+          <p class="result"><strong>You get</strong> your service in your customers' and staff's pockets.</p>
+        </article>
+        <article class="service cut glow">
+          <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="10" cy="14" r="4"/><circle cx="10" cy="34" r="4"/><circle cx="38" cy="24" r="5"/><path d="M14 14h8c6 0 6 10 11 10M14 34h8c6 0 6-10 11-10"/></svg>
+          <h3>Automation and AI workflows</h3>
+          <p>Form to spreadsheet to notification. CRM follow-ups, document processing, approvals, API integrations and AI-assisted customer support.</p>
+          <p class="result"><strong>You get</strong> fewer repeated steps and less time lost to admin.</p>
+        </article>
+      </div>
+
+      <div class="service-secondary">
+        <article>
+          <h3>E-commerce systems</h3>
+          <p>Online stores, product and order management, inventory sync, invoices, shipping and payment integration that follows each provider's rules.</p>
+        </article>
+        <article>
+          <h3>Custom software</h3>
+          <p>Office management, inventory, billing, reporting, POS-connected tools and internal APIs.</p>
+        </article>
+        <article>
+          <h3>Maintenance and support</h3>
+          <p>Bug fixes, hosting and deployment, backups, performance checks, feature updates and documentation.</p>
+        </article>
+      </div>
+
+      <div class="offers cut glow">
+        <h3>Three ways to start</h3>
+        <div class="offer-row">
+          <div class="offer">
+            <h4>Business Starter</h4>
+            <p>A website, a contact form and a basic dashboard.</p>
+            <button type="button" class="btn btn-primary btn-sm" data-offer="Business Starter">Ask about this</button>
+          </div>
+          <div class="offer">
+            <h4>Process Automation</h4>
+            <p>One time-consuming task turned into a reliable workflow.</p>
+            <button type="button" class="btn btn-primary btn-sm" data-offer="Process Automation">Ask about this</button>
+          </div>
+          <div class="offer">
+            <h4>MVP Build</h4>
+            <p>We test your idea, then build a first usable version with limited features.</p>
+            <button type="button" class="btn btn-primary btn-sm" data-offer="MVP Build">Ask about this</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOLUTIONS ============ -->
+  <section class="section fit" id="fit" data-label="Solutions">
+    <div class="container">
+      <header class="section-head">
+        <h2 class="split">Tell us the problem. We will build the fix.</h2>
+        <p>Pick the one that sounds like you. These are examples of what we would build, not finished client case studies.</p>
+      </header>
+
+      <div class="fit-grid">
+        <div class="tabs" role="tablist" aria-label="Business type" id="tabs">
+          <button role="tab" id="tab-clinic" aria-selected="true" aria-controls="panel" data-key="clinic">Clinic or diagnostic centre</button>
+          <button role="tab" id="tab-shop" aria-selected="false" aria-controls="panel" data-key="shop" tabindex="-1">Local shop</button>
+          <button role="tab" id="tab-seller" aria-selected="false" aria-controls="panel" data-key="seller" tabindex="-1">Online seller</button>
+          <button role="tab" id="tab-agency" aria-selected="false" aria-controls="panel" data-key="agency" tabindex="-1">Service agency</button>
+          <button role="tab" id="tab-startup" aria-selected="false" aria-controls="panel" data-key="startup" tabindex="-1">Startup</button>
+        </div>
+
+        <div class="panel cut glow" id="panel" role="tabpanel" aria-labelledby="tab-clinic" tabindex="0">
+          <div class="panel-block">
+            <h3>Today</h3>
+            <p id="panel-today"></p>
+          </div>
+          <div class="panel-block">
+            <h3>What we would build</h3>
+            <ol class="flow" id="panel-flow"></ol>
+          </div>
+          <p class="panel-foot" id="panel-foot"></p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ============ WORK ============ -->
-  <section class="section work" id="work" data-label="Work">
-    <div class="container">
-      <header class="section-head">
-        <h2>Selected work</h2>
-        <p>Seventeen projects built by our founder, Rakibul Hasan: client systems, products of his own and hackathon builds. Each one is labeled for what it is. Private repositories are described without code, and we are happy to walk through them on a call.</p>
-      </header>
-
-      <div class="filters" id="filters" role="group" aria-label="Filter projects">
-        <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span class="count"></span></button>
-        <button type="button" class="filter" data-filter="web" aria-pressed="false">Web and SaaS <span class="count"></span></button>
-        <button type="button" class="filter" data-filter="ai" aria-pressed="false">AI and automation <span class="count"></span></button>
-        <button type="button" class="filter" data-filter="mobile" aria-pressed="false">Mobile and desktop <span class="count"></span></button>
-        <button type="button" class="filter" data-filter="tools" aria-pressed="false">Tools and experiments <span class="count"></span></button>
+  <section class="work" id="work" data-label="Work">
+    <div class="hpin" id="hpin">
+      <div class="container hpin-head">
+        <div>
+          <h2 class="split">Selected work</h2>
+          <p>Seventeen projects, from client systems to hackathon builds. Private repositories are described without code, and we are happy to walk through them on a call.</p>
+        </div>
+        <div class="hprog" id="hprog" aria-hidden="true"><i></i></div>
       </div>
 
-      <div class="featured" id="featured">
+      <div class="htrack" id="htrack">
 
         <!-- BuildIoT BD -->
-        <article class="project cut span-7" data-cat="web">
+        <article class="project cut glow" data-cat="web">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
             <g class="p-dim">
               <rect x="24" y="28" width="84" height="64" rx="3"/><rect x="118" y="28" width="84" height="64" rx="3"/><rect x="212" y="28" width="84" height="64" rx="3"/>
@@ -149,7 +264,7 @@
         </article>
 
         <!-- TradingSpark -->
-        <article class="project cut span-5" data-cat="ai">
+        <article class="project cut glow" data-cat="ai">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
             <path class="p-grid" d="M24 28v148M24 176h272M24 102h272"/>
             <g class="p-dim p-thin">
@@ -181,7 +296,7 @@
         </article>
 
         <!-- ShopTalk -->
-        <article class="project cut span-5" data-cat="web ai">
+        <article class="project cut glow" data-cat="web ai">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
             <g class="p-line">
               <path d="M40 74l12-30h120l12 30"/><path d="M40 74q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0q10 12 20 0"/>
@@ -204,7 +319,7 @@
         </article>
 
         <!-- Replixon -->
-        <article class="project cut span-7" data-cat="ai web">
+        <article class="project cut glow" data-cat="ai web">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
             <g class="p-line">
               <circle cx="44" cy="44" r="12"/><circle cx="44" cy="84" r="12"/><circle cx="44" cy="124" r="12"/><circle cx="44" cy="164" r="12"/>
@@ -229,7 +344,7 @@
         </article>
 
         <!-- InstaMiner -->
-        <article class="project cut span-6" data-cat="mobile web">
+        <article class="project cut glow" data-cat="mobile web">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
             <g class="p-line">
               <rect x="58" y="18" width="74" height="164" rx="12"/><path d="M84 28h22"/>
@@ -253,7 +368,7 @@
         </article>
 
         <!-- Tender Package Builder -->
-        <article class="project cut span-6" data-cat="tools web">
+        <article class="project cut glow" data-cat="tools web">
           <svg class="plate" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
             <g class="p-dim">
               <g transform="rotate(-9 70 70)"><rect x="40" y="34" width="64" height="84" rx="3"/><path d="M52 54h40M52 66h40M52 78h28"/></g>
@@ -280,126 +395,57 @@
           </div>
         </article>
       </div>
+    </div>
 
-      <div class="index-wrap" id="index-wrap">
-        <h3 class="index-title">Also built</h3>
-        <ul class="index" id="index">
-          <li data-cat="tools web"><div class="ix-main"><h4>Smart Escape</h4><p>Evacuation route simulator. Finds the lowest-cost route to an open exit and recalculates as corridors or exits are blocked. English and Bangla, keyboard accessible.</p></div><p class="ix-stack">JavaScript, SVG</p><p class="ix-links"><a href="https://rakibulx33.github.io/AI-DEV-FEST-2026-VIBE-CODING-MOCK/" rel="noopener">Live demo</a><a href="https://github.com/rakibulx33/AI-DEV-FEST-2026-VIBE-CODING-MOCK" rel="noopener">Source</a></p></li>
-          <li data-cat="web"><div class="ix-main"><h4>Mosque Admin Panel</h4><p>Bengali admin system for members with family trees, donations, expenses, a bank ledger and printable Bengali reports. Role-based access with CSRF protection and rate limiting.</p></div><p class="ix-stack">Express, PostgreSQL, Knex, EJS</p><p class="ix-links"><a href="https://github.com/rakibulx33/Baitur-Rahman-Jame-Mosjid" rel="noopener">Source</a></p></li>
-          <li data-cat="web ai"><div class="ix-main"><h4>DIU Job Hub</h4><p>University job platform with student, recruiter and admin portals, AI job matching and academic eligibility scoring.</p></div><p class="ix-stack">Next.js 15, TypeScript, MySQL, Groq</p><p class="ix-links"><a href="https://github.com/rakibulx33/diujobhub" rel="noopener">Source</a></p></li>
-          <li data-cat="ai"><div class="ix-main"><h4>Upbit Watch</h4><p>Listing-alert bot that watches Upbit, Binance, Bithumb and Coinbase for new listings, streams live status over WebSocket and sends Telegram alerts.</p></div><p class="ix-stack">Python, FastAPI, WebSocket, SQLite</p><p class="ix-links"><a href="https://github.com/rakibulx33/firstlight" rel="noopener">Source</a></p></li>
-          <li data-cat="web"><div class="ix-main"><h4>MealNChill</h4><p>Mess management system for meals, attendance, inventory and shared finances in hostels and shared living spaces.</p></div><p class="ix-stack">Next.js 15, TypeScript, MongoDB</p><p class="ix-links"><a href="https://github.com/rakibulx33/MealNChill" rel="noopener">Source</a></p></li>
-          <li data-cat="mobile"><div class="ix-main"><h4>WaitWise</h4><p>Queue management with a JavaFX admin desktop app and a mobile web view. Customers join by QR code and see their live position.</p></div><p class="ix-stack">Java, JavaFX, MySQL</p><p class="ix-links"><a href="https://github.com/rakibulx33/WaitWise" rel="noopener">Source</a></p></li>
-          <li data-cat="tools"><div class="ix-main"><h4>BongoScript</h4><p>Team compiler project: a programming language with Bangla keywords, transpiled to C. Built for the compiler design course.</p></div><p class="ix-stack">Flex, Bison, C, Node.js</p><p class="ix-links"><a href="https://github.com/toha129/bongoscript_project" rel="noopener">Source</a></p></li>
-          <li data-cat="mobile"><div class="ix-main"><h4>Winternet Meter</h4><p>Windows desktop app: a floating, always-on-top meter showing live upload and download speed, with a customizable look.</p></div><p class="ix-stack">C#, .NET</p><p class="ix-links"><a href="https://github.com/rakibulx33/WinternetMeter" rel="noopener">Source</a></p></li>
-          <li data-cat="tools web"><div class="ix-main"><h4>Cheatsheet Generator</h4><p>Drag-and-drop, block-based cheatsheet builder with templates and PDF export.</p></div><p class="ix-stack">React, dnd-kit, jsPDF</p><p class="ix-links"><a href="https://github.com/rakibulx33/cheatSheetGenerator" rel="noopener">Source</a></p></li>
-          <li data-cat="mobile ai"><div class="ix-main"><h4>NS Order Forward</h4><p>Android automation app for processing orders in the background.</p></div><p class="ix-stack">Kotlin, Android</p><p class="ix-links"><span class="lock">Private repository</span></p></li>
-          <li data-cat="web"><div class="ix-main"><h4>ClanWar Coach</h4><p>Clan and player stats tracker for Clash of Clans, served through a caching proxy for the official API.</p></div><p class="ix-stack">React, Express, Recharts</p><p class="ix-links"><a href="https://github.com/rakibulx33/Clash-of-Clan-Status" rel="noopener">Source</a></p></li>
-        </ul>
+    <div class="container index-wrap" id="index-wrap">
+      <h3 class="index-title">Also built</h3>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects">
+        <button type="button" class="filter" data-filter="all" aria-pressed="true">All <span class="count"></span></button>
+        <button type="button" class="filter" data-filter="web" aria-pressed="false">Web and SaaS <span class="count"></span></button>
+        <button type="button" class="filter" data-filter="ai" aria-pressed="false">AI and automation <span class="count"></span></button>
+        <button type="button" class="filter" data-filter="mobile" aria-pressed="false">Mobile and desktop <span class="count"></span></button>
+        <button type="button" class="filter" data-filter="tools" aria-pressed="false">Tools and experiments <span class="count"></span></button>
       </div>
-
+      <ul class="index" id="index">
+        <li data-cat="tools web"><div class="ix-main"><h4>Smart Escape</h4><p>Hackathon build. Evacuation route simulator that finds the lowest-cost route to an open exit and recalculates as corridors or exits are blocked. English and Bangla, keyboard accessible.</p></div><p class="ix-stack">JavaScript, SVG</p><p class="ix-links"><a href="https://rakibulx33.github.io/AI-DEV-FEST-2026-VIBE-CODING-MOCK/" rel="noopener">Live demo</a><a href="https://github.com/rakibulx33/AI-DEV-FEST-2026-VIBE-CODING-MOCK" rel="noopener">Source</a></p></li>
+        <li data-cat="web"><div class="ix-main"><h4>Mosque Admin Panel</h4><p>Bengali admin system for members with family trees, donations, expenses, a bank ledger and printable Bengali reports. Role-based access with CSRF protection and rate limiting.</p></div><p class="ix-stack">Express, PostgreSQL, Knex, EJS</p><p class="ix-links"><a href="https://github.com/rakibulx33/Baitur-Rahman-Jame-Mosjid" rel="noopener">Source</a></p></li>
+        <li data-cat="web ai"><div class="ix-main"><h4>DIU Job Hub</h4><p>University job platform with student, recruiter and admin portals, AI job matching and academic eligibility scoring.</p></div><p class="ix-stack">Next.js 15, TypeScript, MySQL, Groq</p><p class="ix-links"><a href="https://github.com/rakibulx33/diujobhub" rel="noopener">Source</a></p></li>
+        <li data-cat="ai"><div class="ix-main"><h4>Upbit Watch</h4><p>Listing-alert bot that watches Upbit, Binance, Bithumb and Coinbase for new listings, streams live status over WebSocket and sends Telegram alerts.</p></div><p class="ix-stack">Python, FastAPI, WebSocket, SQLite</p><p class="ix-links"><a href="https://github.com/rakibulx33/firstlight" rel="noopener">Source</a></p></li>
+        <li data-cat="web"><div class="ix-main"><h4>MealNChill</h4><p>Mess management system for meals, attendance, inventory and shared finances in hostels and shared living spaces.</p></div><p class="ix-stack">Next.js 15, TypeScript, MongoDB</p><p class="ix-links"><a href="https://github.com/rakibulx33/MealNChill" rel="noopener">Source</a></p></li>
+        <li data-cat="mobile"><div class="ix-main"><h4>WaitWise</h4><p>Queue management with a JavaFX admin desktop app and a mobile web view. Customers join by QR code and see their live position.</p></div><p class="ix-stack">Java, JavaFX, MySQL</p><p class="ix-links"><a href="https://github.com/rakibulx33/WaitWise" rel="noopener">Source</a></p></li>
+        <li data-cat="tools"><div class="ix-main"><h4>BongoScript</h4><p>Team compiler project: a programming language with Bangla keywords, transpiled to C. Built for the compiler design course.</p></div><p class="ix-stack">Flex, Bison, C, Node.js</p><p class="ix-links"><a href="https://github.com/toha129/bongoscript_project" rel="noopener">Source</a></p></li>
+        <li data-cat="mobile"><div class="ix-main"><h4>Winternet Meter</h4><p>Windows desktop app: a floating, always-on-top meter showing live upload and download speed, with a customizable look.</p></div><p class="ix-stack">C#, .NET</p><p class="ix-links"><a href="https://github.com/rakibulx33/WinternetMeter" rel="noopener">Source</a></p></li>
+        <li data-cat="tools web"><div class="ix-main"><h4>Cheatsheet Generator</h4><p>Drag-and-drop, block-based cheatsheet builder with templates and PDF export.</p></div><p class="ix-stack">React, dnd-kit, jsPDF</p><p class="ix-links"><a href="https://github.com/rakibulx33/cheatSheetGenerator" rel="noopener">Source</a></p></li>
+        <li data-cat="mobile ai"><div class="ix-main"><h4>NS Order Forward</h4><p>Android automation app for processing orders in the background.</p></div><p class="ix-stack">Kotlin, Android</p><p class="ix-links"><span class="lock">Private repository</span></p></li>
+        <li data-cat="web"><div class="ix-main"><h4>ClanWar Coach</h4><p>Clan and player stats tracker for Clash of Clans, served through a caching proxy for the official API.</p></div><p class="ix-stack">React, Express, Recharts</p><p class="ix-links"><a href="https://github.com/rakibulx33/Clash-of-Clan-Status" rel="noopener">Source</a></p></li>
+      </ul>
       <p class="empty" id="empty" hidden>Nothing in this group yet.</p>
-
-      <p class="work-foot">The full portfolio, with the founder's research and contact details, is at <a href="https://rakibulx33.me" rel="noopener">rakibulx33.me</a>.</p>
     </div>
   </section>
 
-  <!-- ============ SERVICES ============ -->
-  <section class="section services light" id="services" data-label="Services" data-tone="light">
+  <!-- ============ TEAM ============ -->
+  <section class="section team" id="team" data-label="Team">
     <div class="container">
       <header class="section-head">
-        <h2>What we build</h2>
-        <p>Gikpik is more than a place to order code. We are a technology partner for improving how your business works. Most clients start with one of the first three.</p>
+        <h2 class="split">Small on purpose.</h2>
+        <p>You deal with the people doing the work. No account managers, no hand-offs, no waiting on a committee. A small team that owns the whole job moves faster and cares more.</p>
       </header>
 
-      <div class="service-primary">
-        <article class="service cut">
-          <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect x="5" y="9" width="38" height="30" rx="2"/><path d="M5 17h38M12 13h.01M17 13h.01M12 25h14M12 31h22"/></svg>
-          <h3>Websites and web apps</h3>
-          <p>Business sites, landing pages, dashboards, admin panels, booking systems and customer portals. Responsive, fast and built so someone can maintain them.</p>
-          <p class="result"><strong>You get</strong> your business online, with the daily work digital.</p>
-        </article>
-        <article class="service cut">
-          <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><circle cx="10" cy="14" r="4"/><circle cx="10" cy="34" r="4"/><circle cx="38" cy="24" r="5"/><path d="M14 14h8c6 0 6 10 11 10M14 34h8c6 0 6-10 11-10"/></svg>
-          <h3>Automation and AI workflows</h3>
-          <p>Form to spreadsheet to notification. CRM follow-ups, document processing, approvals, API integrations and AI-assisted customer support.</p>
-          <p class="result"><strong>You get</strong> fewer repeated steps and less time lost to admin.</p>
-        </article>
-        <article class="service cut">
-          <svg class="icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><path d="M6 12h6l4 18h20l4-14H14"/><circle cx="20" cy="38" r="3"/><circle cx="34" cy="38" r="3"/></svg>
-          <h3>E-commerce systems</h3>
-          <p>Online stores, product and order management, inventory sync, invoices, shipping and payment integration that follows each provider's rules.</p>
-          <p class="result"><strong>You get</strong> orders that arrive organized, not scattered across chats.</p>
-        </article>
+      <ul class="principles">
+        <li class="glow"><h3>One owner per project</h3><p>Someone is accountable from the first call to launch day, and they are in the room when you review.</p></li>
+        <li class="glow"><h3>Direct line to the builders</h3><p>Ask a question and the person who wrote the code answers it, in plain language.</p></li>
+        <li class="glow"><h3>Scope in writing, first</h3><p>What is in, what is out, who pays for third-party services and what done means, agreed before we build.</p></li>
+        <li class="glow"><h3>Reviewed before release</h3><p>Every requirement, login, payment flow and release is checked by a person, not just a tool.</p></li>
+      </ul>
+
+      <div class="disciplines" id="disciplines">
+        <article class="cut glow"><h3>Engineering</h3><p>Backend systems, APIs, web and mobile apps, built to run reliably in production.</p></article>
+        <article class="cut glow"><h3>Design and UX</h3><p>Interfaces that make sense on the first visit, on a phone and on a desktop.</p></article>
+        <article class="cut glow"><h3>Automation and AI</h3><p>Workflows, integrations and AI features that remove manual steps.</p></article>
+        <article class="cut glow"><h3>QA and delivery</h3><p>Testing, deployment, handover and the support that follows launch.</p></article>
       </div>
 
-      <div class="service-secondary">
-        <article>
-          <h3>Custom software</h3>
-          <p>Office management, inventory, billing, reporting, POS-connected tools and internal APIs.</p>
-        </article>
-        <article>
-          <h3>Mobile apps</h3>
-          <p>Business apps for Android, and iOS-compatible builds when a project needs them: customer portals, staff apps and field data collection.</p>
-        </article>
-        <article>
-          <h3>Maintenance and support</h3>
-          <p>Bug fixes, hosting and deployment, backups, performance checks, feature updates and documentation.</p>
-        </article>
-      </div>
-
-      <div class="offers">
-        <h3>Three ways to start</h3>
-        <div class="offer-row">
-          <div class="offer">
-            <h4>Business Starter</h4>
-            <p>A website, a contact form and a basic dashboard.</p>
-            <button type="button" class="btn btn-dark btn-sm" data-offer="Business Starter">Ask about this</button>
-          </div>
-          <div class="offer">
-            <h4>Process Automation</h4>
-            <p>One time-consuming task turned into a reliable workflow.</p>
-            <button type="button" class="btn btn-dark btn-sm" data-offer="Process Automation">Ask about this</button>
-          </div>
-          <div class="offer">
-            <h4>MVP Build</h4>
-            <p>We test your idea, then build a first usable version with limited features.</p>
-            <button type="button" class="btn btn-dark btn-sm" data-offer="MVP Build">Ask about this</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ WHO WE HELP ============ -->
-  <section class="section fit" id="fit" data-label="Who we help">
-    <div class="container">
-      <header class="section-head">
-        <h2>Built around how your business really works</h2>
-        <p>Pick the one that sounds like you. These are examples of what we would build, not finished client case studies.</p>
-      </header>
-
-      <div class="fit-grid">
-        <div class="tabs" role="tablist" aria-label="Business type" id="tabs">
-          <button role="tab" id="tab-clinic" aria-selected="true" aria-controls="panel" data-key="clinic">Clinic or diagnostic centre</button>
-          <button role="tab" id="tab-shop" aria-selected="false" aria-controls="panel" data-key="shop" tabindex="-1">Local shop</button>
-          <button role="tab" id="tab-seller" aria-selected="false" aria-controls="panel" data-key="seller" tabindex="-1">Online seller</button>
-          <button role="tab" id="tab-agency" aria-selected="false" aria-controls="panel" data-key="agency" tabindex="-1">Service agency</button>
-          <button role="tab" id="tab-startup" aria-selected="false" aria-controls="panel" data-key="startup" tabindex="-1">Startup</button>
-        </div>
-
-        <div class="panel cut" id="panel" role="tabpanel" aria-labelledby="tab-clinic" tabindex="0">
-          <div class="panel-block">
-            <h3>Today</h3>
-            <p id="panel-today"></p>
-          </div>
-          <div class="panel-block">
-            <h3>What we would build</h3>
-            <ol class="flow" id="panel-flow"></ol>
-          </div>
-          <p class="panel-foot" id="panel-foot"></p>
-        </div>
-      </div>
+      <ul class="people" id="people" hidden></ul>
     </div>
   </section>
 
@@ -408,7 +454,7 @@
     <div class="container">
       <div class="process-grid">
         <div class="process-intro">
-          <h2>From idea to live system</h2>
+          <h2 class="split">From idea to live system</h2>
           <p>We do not promise the impossible. We check feasibility first, then propose the right solution. Scope is agreed in writing before we build: what is in, what is out, who pays for third-party services, how many revisions you get and what done means. Payment follows milestones.</p>
           <div class="verdict" aria-label="Possible feasibility verdicts">
             <p class="verdict-title">Every feasibility check ends in one of three answers</p>
@@ -459,7 +505,7 @@
           <h3>AI-assisted, human-accountable</h3>
           <p>We use AI tools to move faster on drafts, boilerplate and prototypes. A person reviews every requirement, data model, login, payment flow and release. Five gates stand between an idea and your customers.</p>
         </header>
-        <ol class="gate-row">
+        <ol class="gate-row" id="gates">
           <li><h4>Scope</h4><p>Acceptance criteria, integration limits, estimate and risks in writing.</p></li>
           <li><h4>Build</h4><p>Version control, code review, managed dependencies and secrets.</p></li>
           <li><h4>QA</h4><p>Happy path and error path, user roles, input validation, backup and restore.</p></li>
@@ -470,63 +516,12 @@
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="section about" id="about" data-label="About">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-main">
-          <h2><span>Geek thinking.</span> <span>Peak solutions.</span></h2>
-          <div class="defs">
-            <div>
-              <h3>Geek</h3>
-              <p>Deep curiosity and skill in a subject. We start by thinking clearly about your problem, not by writing code.</p>
-            </div>
-            <div>
-              <h3>Peak</h3>
-              <p>The highest standard. We aim for solutions that work in practice, mature over time and keep improving.</p>
-            </div>
-          </div>
-          <div class="promise">
-            <p><strong>Think.</strong> We understand the problem first, then pick the direction.</p>
-            <p><strong>Build.</strong> We prove the idea with a prototype, then build a working system.</p>
-            <p><strong>Support.</strong> We stay after delivery for use, maintenance and improvement.</p>
-          </div>
-        </div>
-
-        <aside class="about-side">
-          <h3>Where Gikpik comes from</h3>
-          <ol class="timeline">
-            <li>
-              <p class="when">2019</p>
-              <p>Gikpik starts as a tech blog and a YouTube channel. The mark grows out of a sketch of the letters G and P in a school notebook.</p>
-            </li>
-            <li>
-              <p class="when">2026</p>
-              <p>A new chapter: Gikpik becomes a software development and business automation studio.</p>
-            </li>
-          </ol>
-          <div class="founder">
-            <h3>Founder and tech lead</h3>
-            <p><strong>Rakibul Hasan</strong> is a freelance backend and automation developer in Dhaka and a CSE student at Daffodil International University. He has been building for clients since 2022.</p>
-          </div>
-        </aside>
-      </div>
-
-      <ul class="values">
-        <li><h3>Transparency</h3><p>If something cannot be done, we say so early. We name the risks and the time they cost.</p></li>
-        <li><h3>Real results</h3><p>A system that works and can be measured beats a pretty demo.</p></li>
-        <li><h3>Collaboration</h3><p>We explain decisions in plain language, so you are never lost in technical talk.</p></li>
-        <li><h3>Safety</h3><p>Your data, access, backups and software security are never an afterthought.</p></li>
-      </ul>
-    </div>
-  </section>
-
   <!-- ============ CONTACT ============ -->
   <section class="section contact" id="contact" data-label="Contact">
     <div class="aurora aurora-low" aria-hidden="true"><i></i><i></i></div>
     <div class="container contact-grid">
       <div class="contact-copy">
-        <h2>Which task takes the most time in your day?</h2>
+        <h2 class="split">Which task takes the most time in your day?</h2>
         <p>Tell us. We will check whether software or automation can make it easier, and reply with questions and an honest read on feasibility. The first call is free.</p>
 
         <ul class="channels">
@@ -583,16 +578,24 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-row">
-      <a class="brand" href="#top" aria-label="Gikpik, back to top">
-        <img src="assets/brand/mark.svg" alt="" width="28" height="28">
-        <span class="wordmark">GiKPiK</span>
-      </a>
-      <p class="foot-tag">Geek thinking. Peak solutions.</p>
-      <p class="foot-meta">&copy; <span id="year">2026</span> Gikpik. Built in Dhaka.</p>
+    <div class="container">
+      <div class="footer-row">
+        <a class="brand" href="#top" aria-label="Gikpik, back to top">
+          <img src="assets/brand/mark.svg" alt="" width="28" height="28">
+          <span class="wordmark">GiKPiK</span>
+        </a>
+        <p class="foot-tag">Geek thinking. Peak solutions.</p>
+        <p class="foot-meta">&copy; <span id="year">2026</span> Gikpik. Built in Dhaka.</p>
+      </div>
     </div>
+    <p class="mega" aria-hidden="true">GiKPiK</p>
   </footer>
 
-  <script src="js/main.js" defer></script>
+  <script src="assets/vendor/gsap.min.js"></script>
+  <script src="assets/vendor/ScrollTrigger.min.js"></script>
+  <script src="assets/vendor/lenis.min.js"></script>
+  <script src="js/team.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
