@@ -31,12 +31,12 @@
     const r = stage.getBoundingClientRect();
     W = Math.max(1, Math.round(r.width));
     H = Math.max(1, Math.round(r.height));
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const gap = W < 420 ? 6.5 : 5.2;                 // screen px between particles
+    const gap = W < 420 ? 6.5 : 5.8;                 // screen px between particles
     const markPx = W * (1 - 2 * INSET);
     const step = gap * S / markPx;                   // same gap in mask units
     const targets = [];
@@ -64,8 +64,11 @@
   function frame(now) {
     raf = 0;
     if (!running) return;
+    const settled = !ptr.on && now - t0 > 3200;
+    if (settled && now - last < 30) { raf = requestAnimationFrame(frame); return; }   // idle: ~30fps
     const dt = Math.min(now - last, 40) / 16.67; last = now;
     const el = now - t0;
+    const damp = Math.pow(0.84, dt);
     const R = 96, R2 = R * R;
 
     for (const p of parts) {
@@ -78,8 +81,8 @@
             ax += dx / d * f; ay += dy / d * f;
           }
         }
-        p.vx = (p.vx + ax * dt) * Math.pow(0.84, dt);
-        p.vy = (p.vy + ay * dt) * Math.pow(0.84, dt);
+        p.vx = (p.vx + ax * dt) * damp;
+        p.vy = (p.vy + ay * dt) * damp;
       } else {
         p.vx += Math.sin(now / 900 + p.ph) * 0.02 * dt;
         p.vy += Math.cos(now / 1100 + p.ph) * 0.02 * dt;
@@ -89,7 +92,6 @@
     }
 
     ctx.clearRect(0, 0, W, H);
-    ctx.globalCompositeOperation = "lighter";
     for (let c = 0; c < 4; c++) {
       ctx.fillStyle = COLORS[c];
       ctx.beginPath();
@@ -97,7 +99,7 @@
         if (p.c !== c) continue;
         const a = el > p.delay ? 1 : 0.35;
         if (a < 1) continue;
-        const s = p.s * (0.9 + 0.1 * Math.sin(now / 700 + p.ph));
+        const s = p.s;
         ctx.rect(p.x - s / 2, p.y - s / 2, s, s);
       }
       ctx.fill();
@@ -106,7 +108,6 @@
     ctx.beginPath();
     for (const p of parts) if (el <= p.delay) ctx.rect(p.x - 0.8, p.y - 0.8, 1.6, 1.6);
     ctx.fill();
-    ctx.globalCompositeOperation = "source-over";
 
     raf = requestAnimationFrame(frame);
   }

@@ -118,14 +118,14 @@
   const closeMenu = () => {
     menuBtn.setAttribute("aria-expanded", "false");
     nav.dataset.open = "false";
-    document.body.style.overflow = "";
+    document.documentElement.classList.remove("menu-open");
     if (lenis) lenis.start();
   };
   menuBtn.addEventListener("click", () => {
     const open = menuBtn.getAttribute("aria-expanded") !== "true";
     menuBtn.setAttribute("aria-expanded", String(open));
     nav.dataset.open = String(open);
-    document.body.style.overflow = open ? "hidden" : "";
+    document.documentElement.classList.toggle("menu-open", open);
     if (lenis) open ? lenis.stop() : lenis.start();
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
@@ -161,19 +161,24 @@
     s.li = li;
   });
 
+  let tops = [], docMax = 0, lastIdx = -1;
+  const cacheTops = () => {
+    const sy = window.scrollY;
+    tops = stops.map((s) => s.el.getBoundingClientRect().top + sy);
+    docMax = document.documentElement.scrollHeight - window.innerHeight;
+  };
   const updateRail = () => {
+    if (!tops.length) cacheTops();
     const sy = window.scrollY;
     const y = sy + window.innerHeight * 0.45;
-    const tops = stops.map((s) => s.el.getBoundingClientRect().top + sy);
     let idx = 0;
     tops.forEach((t, i) => { if (t <= y) idx = i; });
     const h = stops[idx].el.offsetHeight || 1;
     const f = clamp((y - tops[idx]) / h, 0, 1);
     const p = idx >= stops.length - 1 ? 1 : (idx + f) / (stops.length - 1);
     rail.style.setProperty("--p", p.toFixed(4));
-    stops.forEach((s, i) => s.li.classList.toggle("is-on", i === idx));
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.transform = `scaleX(${max > 0 ? clamp(sy / max, 0, 1) : 0})`;
+    if (idx !== lastIdx) { stops.forEach((s, i) => s.li.classList.toggle("is-on", i === idx)); lastIdx = idx; }
+    progress.style.transform = `scaleX(${docMax > 0 ? clamp(sy / docMax, 0, 1) : 0})`;
   };
 
   let ticking = false;
@@ -183,8 +188,16 @@
     requestAnimationFrame(() => { setHeader(); updateRail(); ticking = false; });
   };
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
+  window.addEventListener("resize", () => { cacheTops(); onScroll(); });
+  if (window.ScrollTrigger) ScrollTrigger.addEventListener("refresh", () => { cacheTops(); onScroll(); });
+  window.addEventListener("load", () => { cacheTops(); onScroll(); });
   onScroll();
+
+  /* pause animations in sections that are off-screen */
+  if ("IntersectionObserver" in window) {
+    const pauser = new IntersectionObserver((es) => es.forEach((e) => e.target.classList.toggle("is-off", !e.isIntersecting)), { rootMargin: "120px 0px" });
+    $$("main > section, .bands, .site-footer").forEach((el) => pauser.observe(el));
+  }
 
   /* ---------- Gates light up one after another ---------- */
   const gateItems = $$("#gates li");
@@ -633,11 +646,13 @@
 
   /* marquee: speeds up with scroll velocity */
   const marquees = $$(".marquee").map((m) => ({ anim: (m.getAnimations()[0]) || null }));
-  let rate = 1;
+  let rate = 1, lastRate = 1;
   gsap.ticker.add(() => {
     const v = lenis ? Math.abs(lenis.velocity) : 0;
     const target = 1 + Math.min(v * 0.35, 7);
     rate += (target - rate) * 0.08;
+    if (Math.abs(rate - lastRate) < 0.015) return;
+    lastRate = rate;
     marquees.forEach((m) => { if (m.anim) m.anim.playbackRate = rate; });
   });
   gsap.fromTo(".band-mint", { xPercent: -3 }, { xPercent: 3, ease: "none", scrollTrigger: { trigger: ".bands", start: "top bottom", end: "bottom top", scrub: true } });

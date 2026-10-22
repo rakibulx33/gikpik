@@ -56,7 +56,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.012em;li
 
 /* ---------- Page-level effects ---------- */
 .progress{position:fixed;left:0;top:0;width:100%;height:3px;z-index:60;background:linear-gradient(90deg,var(--mint),var(--aqua));transform:scaleX(0);transform-origin:left;box-shadow:0 0 12px rgba(0,235,138,.7)}
-.cursor-glow{position:fixed;left:0;top:0;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,235,138,.12),rgba(0,235,138,.04) 55%,transparent 72%);pointer-events:none;z-index:1;mix-blend-mode:screen;opacity:0;transition:opacity .5s;will-change:transform}
+.cursor-glow{position:fixed;left:0;top:0;width:620px;height:620px;margin:-310px 0 0 -310px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,235,138,.12),rgba(0,235,138,.04) 55%,transparent 72%);pointer-events:none;z-index:1;opacity:0;transition:opacity .5s;will-change:transform}
 .cursor-glow.on{opacity:1}
 
 /* ---------- Buttons: two opposite corners cut at 45 degrees, like the mark ---------- */
@@ -97,7 +97,9 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.012em;li
    Header
    ========================================================================== */
 .site-header{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--header-h);display:flex;align-items:center;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
-.site-header.is-solid{background:rgba(3,6,43,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.site-header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(3,6,43,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transition:opacity .3s;pointer-events:none}
+.site-header.is-solid{border-bottom-color:var(--line)}
+.site-header.is-solid::before{opacity:1}
 .header-row{display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none}
 .wordmark{font:700 1.3rem/1 var(--display);letter-spacing:.07em}
@@ -134,7 +136,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.012em;li
     radial-gradient(56% 50% at 46% 36%,rgba(6,22,110,.9) 0%,transparent 72%),
     linear-gradient(180deg,#000206 0%,#020836 48%,#071056 100%);
 }
-.aurora i{position:absolute;top:-12%;height:132%;filter:blur(48px);opacity:.34;mix-blend-mode:screen;transform:skewX(-14deg);animation:sway 40s ease-in-out infinite alternate;background:linear-gradient(180deg,transparent 0%,rgba(30,92,224,.85) 46%,rgba(124,72,164,.62) 100%)}
+.aurora i{position:absolute;top:-12%;height:132%;opacity:.3;transform:skewX(-14deg);will-change:transform;animation:sway 40s ease-in-out infinite alternate;background:linear-gradient(90deg,transparent 0%,rgba(30,92,224,.6) 50%,transparent 100%),linear-gradient(180deg,transparent 0%,rgba(30,92,224,.5) 46%,rgba(124,72,164,.4) 100%);background-blend-mode:screen;-webkit-mask-image:linear-gradient(90deg,transparent,#000 35%,#000 65%,transparent);mask-image:linear-gradient(90deg,transparent,#000 35%,#000 65%,transparent)}
 .aurora i:nth-child(1){left:14%;width:18vw}
 .aurora i:nth-child(2){left:44%;width:14vw;animation-duration:52s;animation-delay:-14s;opacity:.26}
 .aurora i:nth-child(3){left:72%;width:20vw;animation-duration:46s;animation-delay:-28s;opacity:.3}
@@ -346,7 +348,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.012em;li
 .clock{margin-top:24px;font-size:.95rem;color:var(--dim)}
 #dhaka-time{color:var(--ink)}
 
-.brief{color-scheme:dark;padding:clamp(22px,3vw,36px);background:rgba(4,9,52,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.brief{color-scheme:dark;padding:clamp(22px,3vw,36px);background:rgba(4,9,52,.92)}
 .brief h3{font-size:1.5rem;margin-bottom:22px}
 .field{margin-bottom:16px}
 .field label{display:block;font-size:.93rem;font-weight:500;color:var(--ink-soft);margin-bottom:7px}
@@ -397,7 +399,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.012em;li
 }
 @media (max-width:860px){
   .menu-btn{display:block}
-  .main-nav{position:fixed;inset:var(--header-h) 0 0 0;flex-direction:column;align-items:stretch;gap:0;padding:12px var(--pad) 32px;background:rgba(3,6,43,.97);backdrop-filter:blur(16px);transform:translateY(-110%);visibility:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s .35s;overflow:auto}
+  .main-nav{position:fixed;inset:var(--header-h) 0 0 0;flex-direction:column;align-items:stretch;gap:0;padding:12px var(--pad) 32px;background:rgba(3,6,43,.98);height:calc(100vh - var(--header-h));height:calc(100dvh - var(--header-h));overscroll-behavior:contain;-webkit-overflow-scrolling:touch;transform:translateY(-110%);visibility:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),visibility 0s .35s;overflow:auto}
   .main-nav[data-open="true"]{transform:none;visibility:visible;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
   .main-nav a:not(.btn){font:600 1.5rem/1 var(--display);padding:1em 0;border-bottom:1px solid var(--line);color:var(--ink)}
   .main-nav a:not(.btn)::after{display:none}
@@ -430,7 +432,7 @@ h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-.012em;li
 :root{--blue:91,140,255;--violet:214,128,200;--mintrgb:0,235,138}
 
 /* film grain */
-body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.045;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* intro loader */
@@ -489,12 +491,12 @@ body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opa
 
 /* hero depth: perspective grid + floating live demos */
 .grid-floor{position:absolute;left:-30%;right:-30%;bottom:-6%;height:56%;z-index:0;pointer-events:none;perspective:520px;-webkit-mask-image:linear-gradient(to top,#000 5%,transparent 88%);mask-image:linear-gradient(to top,#000 5%,transparent 88%)}
-.grid-floor::before{content:"";position:absolute;inset:-40% 0 0 0;transform:rotateX(64deg);transform-origin:50% 100%;
+.grid-floor::before{content:"";position:absolute;inset:calc(-40% - 84px) 0 0 0;transform:rotateX(64deg);transform-origin:50% 100%;will-change:transform;
   background:linear-gradient(rgba(0,235,138,.4) 1px,transparent 1px) 0 0/84px 84px,linear-gradient(90deg,rgba(0,235,138,.4) 1px,transparent 1px) 0 0/84px 84px;animation:gridmove 3.2s linear infinite}
-@keyframes gridmove{to{background-position:0 84px,0 0}}
+@keyframes gridmove{from{transform:rotateX(64deg) translateY(0)}to{transform:rotateX(64deg) translateY(84px)}}
 
 .float{position:absolute;z-index:3;pointer-events:none;will-change:transform}
-.float-in{padding:12px 12px 14px;background:linear-gradient(160deg,rgba(24,40,150,.55),rgba(6,12,70,.62));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.16);border-radius:16px;box-shadow:0 34px 80px -24px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.16);animation:bob 7s ease-in-out infinite}
+.float-in{padding:12px 12px 14px;background:linear-gradient(160deg,rgba(24,40,150,.88),rgba(6,12,70,.92));border:1px solid rgba(255,255,255,.16);border-radius:16px;box-shadow:0 34px 80px -24px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.16);animation:bob 7s ease-in-out infinite}
 .f-web{width:43%;left:-17%;top:5%}
 .f-app{width:29%;right:-8%;top:41%}.f-app .float-in{animation-delay:-2.4s;animation-duration:8s}
 .f-flow{width:47%;left:-4%;bottom:-3%}.f-flow .float-in{animation-delay:-4.6s;animation-duration:9s}
@@ -802,3 +804,22 @@ html[lang="bn"] .xp-title{letter-spacing:0;font-size:clamp(1.05rem,1.35vw,1.25re
 html[lang="bn"] .lede,html[lang="bn"] .section-head p{line-height:1.8}
 html[lang="bn"] .btn{font-weight:600;line-height:1.2;padding-block:.85em}
 html[lang="bn"] .tabs button{line-height:1.45}
+
+html.menu-open,html.menu-open body{overflow:hidden}
+
+/* ---------- Performance layer ---------- */
+/* animations in sections that are off-screen are paused (set by IntersectionObserver in main.js) */
+.is-off *,.is-off *::before,.is-off *::after{animation-play-state:paused!important}
+.btn-primary{animation-play-state:paused}
+.btn-primary:hover,.btn-primary:focus-visible{animation-play-state:running}
+.is-off .btn-primary{animation-play-state:paused!important}
+.grad{will-change:auto}
+.hero-stage,.float,.cursor-glow{backface-visibility:hidden}
+@media (max-width:860px){
+  .aurora i{animation:none}
+  .aurora i:nth-child(3){display:none}
+  .grid-floor::before{animation-duration:6s}
+  .float-in{animation:none}
+  .cursor-glow{display:none}
+  body::after{display:none}
+}
