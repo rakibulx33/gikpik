@@ -274,10 +274,19 @@ TEXT = {
     "This opens your email app with the brief filled in. Nothing is stored on this site.":
         "এটি ব্রিফসহ আপনার ইমেইল অ্যাপ খুলে দেবে। এই সাইটে কিছুই সংরক্ষিত হয় না।",
     "Gikpik. Built in Dhaka.": "Gikpik. ঢাকায় তৈরি।",
+    # sister companies
+    "Sister companies. One standard.": "সহযোগী প্রতিষ্ঠান। একই মান।",
+    "Gikpik is part of a small family of companies. Our sister companies cover IoT engineering and electronics retail, so one idea can move from circuit to cloud to checkout.": "Gikpik একটি ছোট প্রতিষ্ঠান-পরিবারের অংশ। আমাদের সহযোগী প্রতিষ্ঠানগুলো আইওটি ইঞ্জিনিয়ারিং ও ইলেকট্রনিক্স রিটেইল নিয়ে কাজ করে, তাই একটি ধারণা সার্কিট থেকে ক্লাউড ও চেকআউট পর্যন্ত যেতে পারে।",
+    "IoT and embedded engineering": "আইওটি ও এমবেডেড ইঞ্জিনিয়ারিং",
+    "Hardware design, custom PCBs, firmware and connected software, delivered remotely.": "হার্ডওয়্যার ডিজাইন, কাস্টম পিসিবি, ফার্মওয়্যার ও কানেক্টেড সফটওয়্যার, দূর থেকে সরবরাহ।",
+    "Electronics and IoT parts store": "ইলেকট্রনিক্স ও আইওটি যন্ত্রাংশের দোকান",
+    "An online store for electronics and IoT parts, with local payments and delivery.": "ইলেকট্রনিক্স ও আইওটি যন্ত্রাংশের অনলাইন দোকান, স্থানীয় পেমেন্ট ও ডেলিভারিসহ।",
+    "Sister companies": "সহযোগী প্রতিষ্ঠান",
 }
 
 # attribute values (aria-label, placeholder, data-label)
 ATTR = {
+    "Sister companies": "সহযোগী প্রতিষ্ঠান",
     "Gikpik, back to top": "Gikpik, শুরুতে ফিরে যান",
     "Primary": "প্রধান মেনু",
     "Gikpik in numbers": "সংখ্যায় Gikpik",
@@ -303,7 +312,7 @@ META = {
 # text that stays in English on the Bangla page
 KEEP = {
     "GiKPiK", ".tech", "Geek thinking. Peak solutions.", "AI", "UI", "QA", "English",
-    "BuildIoT BD", "TradingSpark", "ShopTalk", "Replixon", "InstaMiner", "Tender Package Builder",
+    "BD", "IoT", "BuildIoT BD", "buildiotlabs.com", "buildiotbd.com", "TradingSpark", "ShopTalk", "Replixon", "InstaMiner", "Tender Package Builder",
     "Smart Escape", "Mosque Admin Panel", "DIU Job Hub", "Upbit Watch", "MealNChill", "WaitWise",
     "BongoScript", "Winternet Meter", "Cheatsheet Generator", "NS Order Forward", "ClanWar Coach",
     "rakibulx33@gmail.com", "t.me/rakibulx33", "linkedin.com/in/rakibulx33", "github.com/rakibulx33",

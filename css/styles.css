@@ -823,3 +823,22 @@ html.menu-open,html.menu-open body{overflow:hidden}
   .cursor-glow{display:none}
   body::after{display:none}
 }
+
+/* sister companies */
+.group-grid{list-style:none;margin:clamp(32px,5vw,56px) 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2.4vw,28px)}
+.group-card{position:relative;border:1px solid var(--line);background:var(--card);transition:border-color .3s,transform .3s}
+.group-card:hover,.group-card:focus-within{border-color:rgba(0,235,138,.55);transform:translateY(-3px)}
+.group-link{display:flex;flex-direction:column;gap:12px;height:100%;padding:clamp(22px,3vw,34px);color:inherit;text-decoration:none}
+.group-logo{display:flex;align-items:center;height:64px;margin-bottom:10px}
+.group-logo-plate{align-self:flex-start;padding:10px 16px;background:#F4F1EA;border-radius:8px}
+.group-logo-plate img{display:block;height:44px;width:auto}
+.group-wordmark{font:700 1.9rem/1 var(--display);letter-spacing:.01em;color:var(--ink)}
+.group-wordmark b{font-weight:700;color:var(--mint)}
+.group-wordmark i{font-style:normal;font-weight:500;color:var(--ink-soft);margin-left:.15em}
+.group-desc{color:var(--ink-soft);max-width:44ch}
+.group-url{margin-top:auto;padding-top:8px;font:600 .9rem/1 var(--display);letter-spacing:.08em;color:var(--mint)}
+.group-url::after{content:" \2192"}
+.foot-group{font:600 .8rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-decoration:none}
+.foot-group:hover{color:var(--mint)}
+@media (max-width:760px){.group-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.group-card{transition:none}.group-card:hover,.group-card:focus-within{transform:none}}
