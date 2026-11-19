@@ -19,8 +19,13 @@ window.GIKPIK_TEAM = [
     bn: { name: "জহুরুল ইসলাম (রাফি)", role: "ম্যানেজার", blurb: "প্রতিটি প্রজেক্ট স্কোপ, সময় আর লক্ষ্যের মধ্যে রাখেন।", tags: ["পরিকল্পনা", "ডেলিভারি", "ক্লায়েন্ট"] }
   },
   {
-    name: "Faimul", role: "App and software development", blurb: "Builds the mobile apps and software products.",
+    name: "Fahimul Islam Fahim", role: "App and software development", blurb: "Builds the mobile apps and software products.",
     tags: ["Mobile apps", "Software"], photo: "assets/team/member-1.jpg",
-    bn: { name: "ফাইমুল", role: "অ্যাপ ও সফটওয়্যার ডেভেলপমেন্ট", blurb: "মোবাইল অ্যাপ আর সফটওয়্যার প্রোডাক্ট তৈরি করেন।", tags: ["মোবাইল অ্যাপ", "সফটওয়্যার"] }
+    bn: { name: "ফাহিমুল ইসলাম ফাহিম", role: "অ্যাপ ও সফটওয়্যার ডেভেলপমেন্ট", blurb: "মোবাইল অ্যাপ আর সফটওয়্যার প্রোডাক্ট তৈরি করেন।", tags: ["মোবাইল অ্যাপ", "সফটওয়্যার"] }
+  },
+  {
+    name: "Tanvir Ahmed", role: "Chief Marketing Officer", blurb: "Leads marketing strategy, brand growth, and client outreach.",
+    tags: ["Marketing", "Growth", "Brand"], photo: "assets/team/member-5.jpg",
+    bn: { name: "তানভীর আহমেদ", role: "চিফ মার্কেটিং অফিসার", blurb: "মার্কেটিং কৌশল, ব্র্যান্ডের প্রসার ও ক্লায়েন্ট যোগাযোগ পরিচালনা করেন।", tags: ["মার্কেটিং", "গ্রোথ", "ব্র্যান্ড"] }
   }
 ];

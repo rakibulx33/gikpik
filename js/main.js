@@ -430,7 +430,7 @@
   showSegment(tabs[0], false);
 
   /* ---------- Team: render roster if supplied ---------- */
-  const ACCENTS = ["0,235,138", "91,140,255", "214,128,200", "255,200,87"];
+  const ACCENTS = ["0,235,138", "91,140,255", "214,128,200", "255,200,87", "0,230,182"];
   const team = (Array.isArray(window.GIKPIK_TEAM) ? window.GIKPIK_TEAM : []).map((p, i) => {
     const d = BN && p.bn ? { ...p, ...p.bn } : { ...p };
     if (d.photo && BASE) d.photo = new URL(d.photo, BASE).href;
